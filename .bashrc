@@ -1,0 +1,1 @@
+export('LOCALHOST', localhost)

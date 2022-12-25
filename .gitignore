@@ -1,5 +1,9 @@
 # python
-
+env/
+venv/
+__pycache__/
+*.py[cod]
+*$py.class
 static/
 __pycache__
 .pytest_cache/

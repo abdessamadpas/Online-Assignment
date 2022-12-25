@@ -1,0 +1,10 @@
+{% extends 'admin/dashboard.html'%}
+{% block app-main %}
+    <form action="login" method="post">
+        {% csrf_token %}
+        <div class="mb-3">
+            {{ form }}
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+{% endblock  %} 

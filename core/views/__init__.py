@@ -4,4 +4,5 @@ from core.views.PageStudents import *
 from core.views.settings import *
 from core.views.EditModels import *
 from core.views.editStudent import *
+from core.views.loginPage import *
 

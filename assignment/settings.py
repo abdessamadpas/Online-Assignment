@@ -23,9 +23,17 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-95#4u(qxgz@!nh$(n*$&!q+7ad&k1@3k+6s7(na^#&11kq)5dx'
 
 # SECURITY WARNING: don't run with debug turned on in production! 
-#todo change the debug to false when you are ready to deploy on heroku
-DEBUG = False
-ALLOWED_HOSTS = ['assignment-online.herokuapp.com','127.0.0.1']
+
+#! change the debug to false when you are ready to deploy on heroku 
+DEBUG = True
+#todo change the allowed hosts to your own domain name
+ALLOWED_HOSTS = [
+    '127.0.0.1', 
+    'localhost',
+    'assignment-online.herokuapp.com',
+    ]
+
+
 
 
 # Application definition
@@ -137,4 +145,3 @@ STATICFILES_DIRS = [
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-LOGIN_REDIRECT_URL = ''

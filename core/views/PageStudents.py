@@ -3,4 +3,4 @@ from django.http import HttpRequest,HttpResponse
 
 # Create your views here.
 def PageStudents (request):
-    return render(request,'admin/studentSection.html')
+    return render(request,'admine/studentSection.html')

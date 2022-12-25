@@ -1,5 +1,3 @@
-
-from django.contrib import admin
 from django.urls import path
 from core import views
 from django.shortcuts import redirect
@@ -7,7 +5,7 @@ from django.shortcuts import redirect
 
 urlpatterns = [
 
-    path('', views.dashboard , name='dashboard'),
+    path('dashboard/', views.dashboard , name='dashboard'),
     path('login/', views.loginPage, name='login' ),
     path('students/', views.PageStudents, name='PageStudents' ),
     path('students/editStudent/', views.editStudent, name='editStudent' ),
@@ -15,6 +13,6 @@ urlpatterns = [
     path('students/EditModels/', views.EditModels, name='EditModels' ),
     path('settings/', views.settings, name='settings' ),
 
-#    path('', lambda request: redirect('', permanent=True)),
+    path('', lambda request: redirect('dashboard/', permanent=True)),
   
 ]

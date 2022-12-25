@@ -22,9 +22,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-95#4u(qxgz@!nh$(n*$&!q+7ad&k1@3k+6s7(na^#&11kq)5dx'
 
-# SECURITY WARNING: don't run with debug turned on in production!
+# SECURITY WARNING: don't run with debug turned on in production! 
+#todo change the debug to false when you are ready to deploy on heroku
 DEBUG = False
-
 ALLOWED_HOSTS = ['assignment-online.herokuapp.com/','127.0.0.1']
 
 

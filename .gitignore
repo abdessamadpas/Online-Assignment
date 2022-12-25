@@ -1,0 +1,10 @@
+# python
+venv/
+static/
+__pycache__/
+.pytest_cache/
+Pipfile*
+
+# django
+db.sqlite3
+media/

@@ -13,3 +13,4 @@ Pipfile*
 # django
 db.sqlite3
 media/
+

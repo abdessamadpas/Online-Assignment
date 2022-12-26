@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-95#4u(qxgz@!nh$(n*$&!q+7ad&k1@3k+6s7(na^#&11kq)5dx
 # SECURITY WARNING: don't run with debug turned on in production! 
 
 #! change the debug to false when you are ready to deploy on heroku 
-DEBUG = True
+DEBUG = config('DEBUG', default=False, cast=bool)
 #todo change the allowed hosts to your own domain name
 ALLOWED_HOSTS = [
     '127.0.0.1', 
@@ -90,12 +90,12 @@ WSGI_APPLICATION = 'assignment.wsgi.application'
 #todo change the database settings to your own mysql database
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': config('DB_NAME'),
-        'USER': config('DB_USER'),
-        'PASSWORD': config('DB_PASSWORD'),
-        'HOST': config('DB_HOST'),
-        'PORT': config('DB_PORT'),
+        'ENGINE':   config('DB_ENGINE', default='django.db.backends.mysql'),
+        'NAME':     config('DB_NAME', default='assignment'),
+        'USER':     config('DB_USER',  default='root'),
+        'PASSWORD': config('DB_PASSWORD',   default=''),
+        'HOST':     config('DB_HOST', default='localhost'),
+        'PORT':     config('DB_PORT', default='3306'),
     }
 }
 

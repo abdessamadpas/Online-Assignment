@@ -8,6 +8,7 @@ static/
 __pycache__
 .pytest_cache/
 Pipfile*
+.env
 
 
 # django

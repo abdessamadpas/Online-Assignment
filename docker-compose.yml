@@ -10,14 +10,14 @@ services:
     command: python manage.py runserver 0.0.0.0:8080
   
   db:
-  image: mariadb:latest
-  container_name: assignment-online-db
-  restart: always
-  ports:
-    - 3306:3306
-  # other settings
-  environment:
-    MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASS}
-    MYSQL_DATABASE: ${DB_NAME}
-    MYSQL_USER: ${DB_USER}
-    MYSQL_PASSWORD: ${DB_PASS}
+    image: mariadb:latest
+    container_name: assignment-online-db
+    restart: always
+    ports:
+      - 3306:3306
+    # other settings
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${DB_NAME}
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASSWORD}

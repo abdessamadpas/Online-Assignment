@@ -1,0 +1,12 @@
+version: '3.10.0'
+services:
+  app:
+    build: .
+    ports:
+      - 8080:8080
+    volumes:
+      - .:/assingment-online
+    image: app:assignment-online
+    container_name: assignment-online
+    command: python manage.py runserver 0.0.0.0:8080
+    

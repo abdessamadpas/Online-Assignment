@@ -1,0 +1,17 @@
+*.pyc
+*.pyo
+*.mo
+*.db
+*.egg-info
+*.sql.gz
+.cache
+.git/
+__pycache__
+env
+src/{{ project_name }}/settings/local.py
+src/node_modules
+web/media
+web/static/CACHE
+stats
+Dockerfile
+venv

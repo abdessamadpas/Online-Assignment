@@ -24,4 +24,10 @@ pip install -r requirements.txt
 > You will need to reinstall all dependencies using pip, but the rest should just work fine.
 
 todo : install all those dependencies on your own virtual environment:
+<<<<<<< HEAD
 
+=======
+```
+pip install -r requirements.txt
+```
+>>>>>>> 455a131a0087f047a62bfdc42f781331bfe09048

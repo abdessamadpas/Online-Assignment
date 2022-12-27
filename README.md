@@ -1,12 +1,21 @@
-                             
 # Online-Assignment            Pas.          
-## Fll Stack Django Application
+> ### Fll Stack Django Application
 ###### teams : 4
-> let's start
-This site was built using [Online-Assignment ](https://assignment-online.herokuapp.com/dashboard/)
+----
+> This site was built using [Online-Assignment ](https://assignment-online.herokuapp.com/dashboard/)
+----
+## **SETUP** ⚙️
 
+```
+pip install -r requirements.txt
+```
+
+-----
 
 - [ ] Add delight to the experience when all tasks are complete :tada:
+
+
+## **DEPLOYMENT** 📦
 
 ![My Image](templates/public/dashboardScreenShot.png)
 
@@ -15,6 +24,10 @@ This site was built using [Online-Assignment ](https://assignment-online.herokua
 > You will need to reinstall all dependencies using pip, but the rest should just work fine.
 
 todo : install all those dependencies on your own virtual environment:
+<<<<<<< HEAD
+
+=======
 ```
 pip install -r requirements.txt
 ```
+>>>>>>> 455a131a0087f047a62bfdc42f781331bfe09048

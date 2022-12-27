@@ -14,3 +14,4 @@ web/media
 web/static/CACHE
 stats
 Dockerfile
+venv

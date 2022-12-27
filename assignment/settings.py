@@ -5,7 +5,6 @@
 
 
 from pathlib import Path
-import environ
 import os
 from dotenv import load_dotenv
 load_dotenv()
@@ -88,27 +87,12 @@ WSGI_APPLICATION = 'assignment.wsgi.application'
 #todo change the database settings to your own mysql database
 DATABASES = {
     'default': {
-<<<<<<< HEAD
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'django-project',
-        'USER': 'root',
-        'PASSWORD': '',
-        'HOST': 'localhost',
-        'PORT': '3306',
-=======
         'ENGINE':   'django.db.backends.mysql',
         'NAME':     os.environ.get('DB_NAME'),
         'USER':     os.environ.get('DB_USER'),
         'PASSWORD': os.environ.get('DB_PASSWORD'),
         'HOST':     os.environ.get('DB_HOST'),
         'PORT':     os.environ.get('DB_PORT'),
-<<<<<<< HEAD
-        'OPTIONS': {
-            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
-        }
-=======
->>>>>>> 455a131a0087f047a62bfdc42f781331bfe09048
->>>>>>> 81ea202386a08cd91e7953d90503c0cdd864a2ac
     }
 }
 

@@ -4,20 +4,24 @@ services:
     build: .
     ports:
       - 8080:8080
-    
     image: app:assignment-online
     container_name: assignment-online
-    command: python manage.py runserver 0.0.0.0:8080
+    command:
+      - /bin/sh
+      - -c
+      - |
+        wait-for-it --service db:3306 --timeout=60
+        python manage.py migrate
+        python manage.py runserver 0.0.0.0:8080
     depends_on:
       - db
   
   db:
     image: mariadb:latest
     container_name: assignment-online-db
-    restart: on-failure
+    restart: always
     ports:
       - 3306:3306
-    # other settings
     environment:
       MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
       MYSQL_DATABASE: ${DB_NAME}

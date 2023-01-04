@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<title>GFG User Details</title>
+		<!-- CSS FOR STYLING THE PAGE -->
+		<style>
+            /*   css pour 2eme model de QCM
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background-color: #333;
+}
+.container{
+    background-color: #555;
+    color: #ddd;
+    border-radius: 10px;
+    padding: 20px;
+    font-family: 'Montserrat', sans-serif;
+    max-width: 700px;
+}
+.container > p{
+    font-size: 32px;
+}
+.question{
+    width: 75%;
+}
+.options{
+    position: relative;
+    padding-left: 40px;
+}
+#options label{
+    display: block;
+    margin-bottom: 15px;
+    font-size: 14px;
+    cursor: pointer;
+}
+.options input{
+    opacity: 0;
+}
+.checkmark {
+    position: absolute;
+    top: -1px;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #555;
+    border: 1px solid #ddd;
+    border-radius: 50%;
+}
+.options input:checked ~ .checkmark:after {
+    display: block;
+}
+.options .checkmark:after{
+    content: "";
+	width: 10px;
+    height: 10px;
+    display: block;
+	background: white;
+    position: absolute;
+    top: 50%;
+	left: 50%;
+    border-radius: 50%;
+    transform: translate(-50%,-50%) scale(0);
+    transition: 300ms ease-in-out 0s;
+}
+.options input[type="radio"]:checked ~ .checkmark{
+    background: #21bf73;
+    transition: 300ms ease-in-out 0s;
+}
+.options input[type="radio"]:checked ~ .checkmark:after{
+    transform: translate(-50%,-50%) scale(1);
+}
+.btn-primary{
+    background-color: #555;
+    color: #ddd;
+    border: 1px solid #ddd;
+}
+.btn-primary:hover{
+    background-color: #21bf73;
+    border: 1px solid #21bf73;
+}
+.btn-success{
+    padding: 5px 25px;
+    background-color: #21bf73;
+}
+@media(max-width:576px){
+    .question{
+        width: 100%;
+        word-spacing: 2px;
+    } 
+}*/
+
+			table {
+				margin: 0 auto;
+				font-size: large;
+				border: 1px solid black;
+			}
+
+			h1 {
+				text-align: center;
+				color: #006600;
+				font-size: xx-large;
+				font-family: "Gill Sans",
+				"Gill Sans MT",
+				" Calibri",
+				"Trebuchet MS",
+				"sans-serif";
+			}
+
+			td {
+				background-color: #e4f5d4;
+				border: 1px solid black;
+			}
+
+			th,
+			td {
+				font-weight: bold;
+				border: 1px solid black;
+				padding: 10px;
+				text-align: center;
+			}
+
+			td {
+				font-weight: lighter;
+			}
+            .details-form {
+                
+                width: 50%;
+                margin: 0 auto;
+                border: 1px solid black;
+                border-radius: 5px;
+                padding: 20px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+input, select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+button {
+  width: 100%;
+}
+
+body{
+    background-color:#eee;
+}
+
+label.radio {
+  cursor: pointer;
+}
+
+label.radio input {
+  position: absolute;
+  top: 0; 
+  left: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+label.radio span {
+  padding: 4px 0px;
+  border: 1px solid red;
+  display: inline-block;
+  color: red;
+  width: 100px;
+  text-align: center;
+  border-radius: 3px;
+  margin-top: 7px;
+  text-transform: uppercase;
+}
+
+label.radio input:checked + span {
+  border-color: red;
+  background-color: red;
+  color: #fff;
+}
+
+.ans {
+  margin-left: 36px !important;
+}
+
+.btn:focus {
+  outline: 0 !important;
+  box-shadow: none !important;
+}
+
+.btn:active {
+  outline: 0 !important;
+  box-shadow: none !important;
+}
+		</style>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+		<!-- BOOTSTRAP CSS AND PLUGINS-->
+		<link rel="stylesheet"
+			href=
+"https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+			integrity=
+"sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+			crossorigin="anonymous" />
+		<script src=
+"https://code.jquery.com/jquery-3.2.1.slim.min.js"
+				integrity=
+"sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+				crossorigin="anonymous">
+	</script>
+		<script src=
+"https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+				integrity=
+"sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+				crossorigin="anonymous">
+	</script>
+		<script src=
+"https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+				integrity=
+"sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+				crossorigin="anonymous">
+	</script>
+		<script src=
+"https://code.jquery.com/jquery-3.5.1.js"
+				integrity=
+"sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+				crossorigin="anonymous">
+	</script>
+	</head>
+<body>
+   
+  
+  <!-- form details -->
+
+<!-- from QCM
+    <form class="details-form">
+    <div class="form-group">
+      <label for="question">Question</label>
+      <input type="text" class="form-control" id="question" placeholder="Enter question">
+    </div>
+    <div class="form-group options">
+      <label for="option1">Option 1</label>
+      <input type="text" class="form-control" id="option1" placeholder="Enter option">
+    </div>
+    <div class="form-group options">
+      <label for="option2">Option 2</label>
+      <input type="text" class="form-control" id="option2" placeholder="Enter option">
+    </div>
+    <button type="button" class="btn btn-primary add-option">+</button>
+    <div class="form-group">
+      <label for="answer">Correct Answer</label>
+      <select class="form-control" id="answer">
+        <option value="1">Option 1</option>
+        <option value="2">Option 2</option>
+      </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+-->
+
+  
+  
+  <form class="details-form">
+  
+        <div class="form-group">
+          <label for="question">Question</label>
+          <input type="text" class="form-control" id="question" placeholder="Enter question">
+        </div>
+        <div id="options">
+          <div class="form-group">
+            <label for="option1">Option 1</label>
+            <input type="text" class="form-control update-option" id="option1" placeholder="Enter option">
+          </div>
+        </div>
+        <div class="form-group">
+          <button type="button" class="btn btn-primary add-option">+</button>
+        </div>
+        <div class="form-group">
+          <label for="answer">Correct Answer</label>
+          <select class="form-control" id="answer">
+            <option value="1">Select an option</option>
+          </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+      
+      
+      <br> <br>
+  
+<!-- HTML for the form -->
+
+  <!-- JavaScript to handle the input and select elements -->
+ 
+
+
+  <div class="container mt-5">
+    <div class="d-flex justify-content-center row">
+        <div class="col-md-10 col-lg-10">
+            <div class="border">
+                <div class="question bg-white p-3 border-bottom">
+                    <div class="d-flex flex-row justify-content-between align-items-center mcq">
+                        <h4>MCQ Quiz</h4><span>(5 of 20)</span></div>
+                </div>
+                <div class="question bg-white p-3 border-bottom">
+                    <div class="d-flex flex-row align-items-center question-title">
+                        <h3 class="text-danger">Q.</h3>
+                        <h5 class="mt-1 ml-2">Which of the following country has largest population?</h5>
+                    </div><div class="ans ml-2">
+<label class="radio"> <input type="radio" name="brazil" value="brazil"> <span>Brazil</span>
+</label>    
+</div><div class="ans ml-2">
+<label class="radio"> <input type="radio" name="Germany" value="Germany"> <span>Germany</span>
+</label>    
+</div><div class="ans ml-2">
+<label class="radio"> <input type="radio" name="Indonesia" value="Indonesia"> <span>Indonesia</span>
+</label>    
+</div><div class="ans ml-2">
+<label class="radio"> <input type="radio" name="Russia" value="Russia"> <span>Russia</span>
+</label>    
+</div></div>
+                <div class="d-flex flex-row justify-content-between align-items-center p-3 bg-white"><button class="btn btn-primary d-flex align-items-center btn-danger" type="button"><i class="fa fa-angle-left mt-1 mr-1"></i>&nbsp;previous</button><button class="btn btn-primary border-success align-items-center btn-success" type="button">Next<i class="fa fa-angle-right ml-2"></i></button></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--
+<div class="container mt-sm-5 my-1">
+    <div class="question ml-sm-5 pl-sm-5 pt-2">
+        <div class="py-2 h5"><b>Q. which option best describes your job role?</b></div>
+        <div class="ml-md-3 ml-sm-3 pl-md-5 pt-sm-0 pt-3" id="options">
+            <label class="options">Small Business Owner or Employee
+                <input type="radio" name="radio">
+                <span class="checkmark"></span>
+            </label>
+            <label class="options">Nonprofit Owner or Employee
+                <input type="radio" name="radio">
+                <span class="checkmark"></span>
+            </label>
+            <label class="options">Journalist or Activist
+                <input type="radio" name="radio">
+                <span class="checkmark"></span>
+            </label>
+            <label class="options">Other
+                <input type="radio" name="radio">
+                <span class="checkmark"></span>
+            </label>
+        </div>
+    </div>
+    <div class="d-flex align-items-center pt-3">
+        <div id="prev">
+            <button class="btn btn-primary">Previous</button>
+        </div>
+        <div class="ml-auto mr-sm-5">
+            <button class="btn btn-success">Next</button>
+        </div>
+    </div>
+</div>
+-->
+
+</body>
+</html>
+
+<script>
+ const input = document.getElementById('input');
+    const select = document.getElementById('select');
+  
+    // Add an event listener to the input element to update the select element when the input value changes
+    input.addEventListener('blur', () => {
+      select.value = input.value;
+    });
+  
+    // Add an event listener to the add button to add a new option to the select element when clicked
+    document.getElementById('add-button').addEventListener('click', () => {
+      const option = document.createElement('option');
+      option.value = input.value;
+      option.text = input.value;
+      select.add(option);
+    });
+
+// start  function QCM 
+$(document).ready(function() {
+
+ var optionNumber =1;
+  $('.update-option').change(function() {
+    var optionId = $(this).attr('id');
+    var optionValue = $(this).val();
+    $('#answer').append('<option value="' + optionNumber + '">' + optionValue + '</option>');
+   // $('#answer option[value="' + optionId.slice(-1) + '"]').text(optionValue);
+  });
+  
+$('.add-option').click(function() {
+  optionNumber++;
+  $('#options').append(
+    '<div class="form-group"><label for="option' +
+      optionNumber +
+      '">Option ' +
+      optionNumber +
+      '</label><input type="text" class="form-control update-option" id="option' +
+      optionNumber +
+      '" placeholder="Enter option"></div>'
+  );
+  $('.update-option').change(function() { //start
+    var optionId = $(this).attr('id');
+    var optionValue = $(this).val();
+    $('#answer').append('<option value="' + optionNumber + '">' + optionValue + '</option>');
+    });//end
+});
+});
+
+
+
+$(document).ready(function() {
+    $(".view").click(function() {
+      // Get the row element
+      var row = $(this).closest("tr");
+      // Get the values of each cell in the row
+      var cell1 = row.find("td:eq(0)").text();
+      var cell2 = row.find("td:eq(1)").text();
+      var cell3 = row.find("td:eq(2)").text();
+      // Display the values in the modal
+      $("#detailsModal .modal-body").html(`
+        <p>Cell 1: ${cell1}</p>
+        <p>Cell 2: ${cell2}</p>
+        <p>Cell 3: ${cell3}</p>
+      `);
+    }
+    )
+}
+);
+</script>
+  
+
+  

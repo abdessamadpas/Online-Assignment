@@ -1,11 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
+
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Bootstrap Order Details Table with Search Filter</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
@@ -225,17 +222,24 @@ table.table .avatar {
 <script>
 $(document).ready(function(){
 	$('[data-toggle="tooltip"]').tooltip();
+   
+  const viewLinks = document.querySelectorAll('.view');
+  viewLinks.forEach(link => {
+    link.addEventListener('click', event => {
+      event.preventDefault();
+      window.location = '';
+    });
+  });
 });
 </script>
 </head>
-<body>
-<div class="container-xl">
+<div class="section dashboard m-5">
     <div class="table-responsive">
         <div class="table-wrapper">
             <div class="table-title">
                 <div class="row">
                     <div class="col-sm-4">
-                        <h2>Order <b>Details</b></h2>
+                        <h2>Exames <b>Details</b></h2>
                     </div>
                     <div class="col-sm-8">						
                         <a href="#" class="btn btn-primary"><i class="material-icons">&#xE863;</i> <span>Refresh List</span></a>
@@ -267,20 +271,17 @@ $(document).ready(function(){
                             <label>Location</label>
                             <select class="form-control">
                                 <option>All</option>
-                                <option>Berlin</option>
-                                <option>London</option>
-                                <option>Madrid</option>
-                                <option>New York</option>
-                                <option>Paris</option>								
+                                <option>.NET-Core</option>
+                                <option>DJANGO</option>
+                                							
                             </select>
                         </div>
                         <div class="filter-group">
                             <label>Status</label>
                             <select class="form-control">
                                 <option>Any</option>
-                                <option>Delivered</option>
-                                <option>Shipped</option>
-                                <option>Pending</option>
+                                <option>PASSED</option>
+                                <option>NOT PASSED</option>
                                 <option>Cancelled</option>
                             </select>
                         </div>
@@ -291,61 +292,44 @@ $(document).ready(function(){
             <table class="table table-striped table-hover">
                 <thead>
                     <tr>
-                        <th>#</th>
-                        <th>Customer</th>
-                        <th>Location</th>
-                        <th>Order Date</th>						
-                        <th>Status</th>						
-                        <th>Net Amount</th>
-                        <th>Action</th>
+                        <th>ID </th>
+                        <th>NOM</th>
+                        <th>MODULE</th>
+                        <th>DATE CREATION</th>						
+                        <th>STATUS</th>						
+                        <th>NOMBRE QTS</th>
+                        <th>ACTION</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <td>1</td>
-                        <td><a href="#"><img src="/examples/images/avatar/1.jpg" class="avatar" alt="Avatar"> Michael Holz</a></td>
-                        <td>London</td>
+                        <td><a href="#"> CC 1 - PY</a></td>
+                        <td>DJANGO</td>
                         <td>Jun 15, 2017</td>                        
-                        <td><span class="status text-success">&bull;</span> Delivered</td>
-                        <td>$254</td>
+                        <td><span class="status text-success">&bull;</span> NOT PASSED</td>
+                        <td>20</td>
                         <td><a href="#" class="view" title="View Details" data-toggle="tooltip"><i class="material-icons">&#xE5C8;</i></a></td>
                     </tr>
                     <tr>
                         <td>2</td>
-                        <td><a href="#"><img src="/examples/images/avatar/2.jpg" class="avatar" alt="Avatar"> Paula Wilson</a></td>
-                        <td>Madrid</td>                       
+                        <td><a href="#"> CC 1 - .NET-Core</a></td>
+                        <td>.NET-CORE</td>                       
                         <td>Jun 21, 2017</td>
-                        <td><span class="status text-info">&bull;</span> Shipped</td>
-                        <td>$1,260</td>
+                        <td><span class="status text-info">&bull;</span> PASSED</td>
+                        <td>25</td>
                         <td><a href="#" class="view" title="View Details" data-toggle="tooltip"><i class="material-icons">&#xE5C8;</i></a></td>
                     </tr>
                     <tr>
                         <td>3</td>
-                        <td><a href="#"><img src="/examples/images/avatar/3.jpg" class="avatar" alt="Avatar"> Antonio Moreno</a></td>
-                        <td>Berlin</td>
+                        <td><a href="#">CC 2 - PY</a></td>
+                        <td>DJANGO</td>
                         <td>Jul 04, 2017</td>
                         <td><span class="status text-danger">&bull;</span> Cancelled</td>
-                        <td>$350</td>
+                        <td>30</td>
                         <td><a href="#" class="view" title="View Details" data-toggle="tooltip"><i class="material-icons">&#xE5C8;</i></a></td>                        
                     </tr>
-                    <tr>
-                        <td>4</td>
-                        <td><a href="#"><img src="/examples/images/avatar/4.jpg" class="avatar" alt="Avatar"> Mary Saveley</a></td>
-                        <td>New York</td>
-                        <td>Jul 16, 2017</td>						
-                        <td><span class="status text-warning">&bull;</span> Pending</td>
-                        <td>$1,572</td>
-                        <td><a href="#" class="view" title="View Details" data-toggle="tooltip"><i class="material-icons">&#xE5C8;</i></a></td>
-                    </tr>
-                    <tr>
-                        <td>5</td>
-                        <td><a href="#"><img src="/examples/images/avatar/5.jpg" class="avatar" alt="Avatar"> Martin Sommer</a></td>
-                        <td>Paris</td>
-                        <td>Aug 04, 2017</td>
-                        <td><span class="status text-success">&bull;</span> Delivered</td>
-                        <td>$580</td>
-                        <td><a href="#" class="view" title="View Details" data-toggle="tooltip"><i class="material-icons">&#xE5C8;</i></a></td>
-                    </tr>
+                  
                 </tbody>
             </table>
             <div class="clearfix">
@@ -365,5 +349,3 @@ $(document).ready(function(){
         </div>
     </div>        
 </div>     
-</body>
-</html>

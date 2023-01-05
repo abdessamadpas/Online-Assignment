@@ -9,5 +9,5 @@ urlpatterns = [
     path('dashboard/', include('core.urls')),
     path('admin/', admin.site.urls),
 
- #   path('', lambda request: redirect('', permanent=True)),
+   path('', lambda request: redirect('dashboard/', permanent=True)),
 ]

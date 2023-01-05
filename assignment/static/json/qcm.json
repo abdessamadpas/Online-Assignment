@@ -1,0 +1,41 @@
+{
+    "quiz": {
+      "title": "My Quiz",
+      "questions": [
+        {
+          "type": "multiple choice",
+          "text": "What is the capital of France?",
+          "choices": [
+            "Paris",
+            "London",
+            "New York",
+            "Dublin"
+          ],
+          "correctIndex": 0
+        },
+        {
+          "type": "multiple choice",
+          "text": "What is the largest planet in our solar system?",
+          "choices": [
+            "Earth",
+            "Mars",
+            "Jupiter",
+            "Saturn"
+          ],
+          "correctIndex": 2
+        },
+        {
+          "type": "multiple choice",
+          "text": "Who invented the lightbulb?",
+          "choices": [
+            "Thomas Edison",
+            "Benjamin Franklin",
+            "Nikola Tesla",
+            "Isaac Newton"
+          ],
+          "correctIndex": 0
+        }
+      ]
+    }
+  }
+  

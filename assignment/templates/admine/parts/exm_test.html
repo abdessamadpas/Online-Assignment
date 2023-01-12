@@ -309,7 +309,7 @@ $(document).ready(function(){
                         <td>Jun 15, 2017</td>                        
                         <td><span class="status text-success">&bull;</span> NOT PASSED</td>
                         <td>20</td>
-                        <td><a href="#" class="view" title="View Details" data-toggle="tooltip"><i class="material-icons">&#xE5C8;</i></a></td>
+                        <td><a href="{% url 'details_exam' %}" class="" title="View Details" data-toggle="tooltip"><i class="material-icons">&#xE5C8;</i></a></td>
                     </tr>
                     <tr>
                         <td>2</td>
@@ -318,7 +318,7 @@ $(document).ready(function(){
                         <td>Jun 21, 2017</td>
                         <td><span class="status text-info">&bull;</span> PASSED</td>
                         <td>25</td>
-                        <td><a href="#" class="view" title="View Details" data-toggle="tooltip"><i class="material-icons">&#xE5C8;</i></a></td>
+                        <td><a href="{% url 'details_exam' %}" class="" title="View Details" data-toggle="tooltip"><i class="material-icons">&#xE5C8;</i></a></td>
                     </tr>
                     <tr>
                         <td>3</td>
@@ -327,7 +327,8 @@ $(document).ready(function(){
                         <td>Jul 04, 2017</td>
                         <td><span class="status text-danger">&bull;</span> Cancelled</td>
                         <td>30</td>
-                        <td><a href="#" class="view" title="View Details" data-toggle="tooltip"><i class="material-icons">&#xE5C8;</i></a></td>                        
+                       
+                        <td><a href="{% url 'details_exam' %}" class="" title="View Details" data-toggle="tooltip"><i class="material-icons">&#xE5C8;</i></a></td>                        
                     </tr>
                   
                 </tbody>

@@ -1,28 +1,28 @@
 {% extends 'admine/pages/base.html' %}
-
+{% load static %}
 {% block content %} 
 
 <section class="section dashboard">
     <div class="row ">
         
-        <div class="card-header py-3">
+        <div class="card-header py-3 ">
             <p class="text-primary m-0 fw-bold">la liste des QCM : </p>
+            
         </div>
 
-            <div class="card-header d-flex">
+            <div class="card-header d-flex justify-content-between ">
                 <form class="form-inline my-2 my-lg-0">
                 <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
                 </form>
-                <div class="dropdown">
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Filter by
-                </button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" href="#">Python</a>
-                    <a class="dropdown-item" href="#">Django</a>
-                </div>
-                </div>
+     
+                <a href="#" class="btn btn-primary float-right" role="button">ADD QCM</a>
+               
+            </div>
+            
+            <div class="d-flex ">
+
+                   
             </div>
 
     </div>
@@ -30,7 +30,7 @@
 
     <!--liste exams-->
     <div class="row">
-         {% include 'admine/parts/gestion_exm.html' %}
+         {% include 'admine/parts/gestion_exams.html' %}
     </div>
    
     </section>

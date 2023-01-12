@@ -55,18 +55,27 @@
                 <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
                
                   <ul class="list-group">
-                      <li class="list-group-item d-flex justify-content-between align-items-center   w-50">
-                       <span> Option 1</span>
-                        <span class="badge badge-danger badge-pill  align-self-end">Incorrect</span>
-                      </li>
-                      <li class="list-group-item  d-flex justify-content-between align-items-center   w-50">
-                          <span> Option 2</span>
-                        <span class="badge badge-danger badge-pill  align-self-end">Incorrect</span>
-                      </li>
-                      <li class="list-group-item d-flex justify-content-between align-items-center   w-50">
-                          <span> Option 3</span>
-                        <span class="badge badge-success badge-pill  align-self-end">Correct</span>
-                      </li>
+                      
+                    <form>
+                        <div class="form-group">
+                          <label for="qcmTitle">Titre du QCM</label>
+                          <input type="text" class="form-control" id="qcmTitle" placeholder="Entrez le titre du QCM">
+                        </div>
+                        <div class="form-group" id="qcmOptionsGroup">
+                          <label for="qcmOption1">Option 1</label>
+                          <div class="form-inline">
+                            <input type="text" class="form-control mr-2" id="qcmOption1" placeholder="Entrez une option">
+                            <div class="form-check">
+                              <input class="form-check-input" type="checkbox" value="1" id="qcmOption1Correct">
+                              <label class="form-check-label" for="qcmOption1Correct">Option correcte</label>
+                            </div>
+                          </div>
+                        </div>
+                        <button type="button" class="btn btn-secondary" id="addOptionButton">Ajouter une option</button>
+                        <button type="submit" class="btn btn-primary">Enregistrer</button>
+                      </form>
+                      
+                    
                     </ul>
                     
   
@@ -87,16 +96,27 @@
                
                   <ul class="list-group">
                       <li class="list-group-item d-flex justify-content-between align-items-center   w-50">
-                       <span> Option 1</span>
-                        <span class="badge badge-danger badge-pill  align-self-end">Incorrect</span>
+                        <input type="text" value="Option 1">
+                       
+                        <select class="form-control status align-self-end" id="status">
+                            <option><span class="badge badge-success badge-pill  ">Correct</span></option>
+                            <option><span class="badge badge-danger badge-pill  ">Incorrect</span></option>
+                        </select>
                       </li>
                       <li class="list-group-item  d-flex justify-content-between align-items-center   w-50">
-                          <span> Option 2</span>
-                        <span class="badge badge-danger badge-pill  align-self-end">Incorrect</span>
+                        <input type="text" value="Option 1">
+                        <select class="form-control status align-self-end" id="status">
+                            <option><span class="badge badge-success badge-pill  ">Correct</span></option>
+                            <option><span class="badge badge-danger badge-pill  ">Incorrect</span></option>
+                        </select>
                       </li>
                       <li class="list-group-item d-flex justify-content-between align-items-center   w-50">
-                          <span> Option 3</span>
-                        <span class="badge badge-success badge-pill  align-self-end">Correct</span>
+                        <input type="text" value="Option 1">
+                       
+                        <select class="form-control status align-self-end" id="status">
+                            <option><span class="badge badge-success badge-pill  ">Correct</span></option>
+                            <option><span class="badge badge-danger badge-pill  ">Incorrect</span></option>
+                        </select>
                       </li>
                     </ul>
                     

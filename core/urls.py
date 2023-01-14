@@ -26,13 +26,20 @@ urlpatterns = [
     path('students/getModels/', views.getModels, name='getModels' ),
     path('students/EditModels/', views.EditModels, name='EditModels' ),
 
+    #? modules section
+    path('<module_id>/', CourseDetail, name='course'),
+	path('<modele_id>/enroll', Enroll, name='enroll'),
+	path('<modele_id>/edit', EditCourse, name='edit-course'),
+	path('<modele_id>/delete', DeleteCourse, name='delete-course'),
+
+
 
     path('exams/', views.exam, name='exam'),
     path('details_exam/', views.details_exam, name='details_exam'),
     path('edit_exam/', views.edit_exam, name='edit_exam'),
     path('gestion_exam/', views.gestion_exam, name='gestion_exam'),
     
-    #? sestion for exams
+    #? exams sestion 
 
     #path('exams/addExam/', views.addExam, name='addExam' ),
     #path('exams/deleteExam/', views.deleteExam, name='deleteExam' ),

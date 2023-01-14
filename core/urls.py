@@ -1,5 +1,5 @@
 from django.urls import path
-from core import views
+from core import views , views_etudiant
 from django.shortcuts import redirect
 
 
@@ -16,7 +16,12 @@ urlpatterns = [
     path('students/getModels/', views.getModels, name='getModels' ),
     path('students/EditModels/', views.EditModels, name='EditModels' ),
     path('settings/', views.settings, name='settings' ),
+    path('profile/', views.profile_admin, name='profile_admin' ),
+ #   -------------------- paths etudiant -------------------- #
+     path('etudiant/',views_etudiant.dashboard_s , name='dashboard_s'),
 
- #   path('', lambda request: redirect('/', permanent=True)),
-  
+    path('etudiant/list_exam',views_etudiant.afficher_qcm , name='list_exam'),
+    path('etudiant/passer_qcm',views_etudiant.passer_qcm , name='passer_qcm'),
+    path('etudiant/resultat_qcm',views_etudiant.resultat_qcm , name='resultat_qcm'),
+     path('etudiant/profile',views_etudiant.profile , name='profile'),
 ]

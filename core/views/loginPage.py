@@ -8,4 +8,4 @@ from django.http import HttpResponseRedirect
 # Create your views here.
 def loginPage (request):
     
-    return render(request,'admine/login.html')
+    return render(request,'admine/pages/login.html')

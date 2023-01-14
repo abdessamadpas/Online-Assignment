@@ -1,0 +1,47 @@
+{% extends 'etudiant/pages/base_etudiant.html' %}
+{% load static %}
+{% block content %} 
+
+<section class="section dashboard">
+    <div class="row ">
+        
+        <div class="card-header py-3 ">
+            <p class="text-primary m-0 fw-bold">la liste des QCM : </p>
+            
+        </div>
+
+            <div class="card-header d-flex justify-content-between ">
+                <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                </form>
+
+            </div>
+            
+          
+
+    </div>
+
+
+    <!--liste exams-->
+    <div class="row">
+         {% include 'etudiant/parts/list_qcm.html' %}
+    </div>
+   
+    </section>
+
+     <!-- ======= Footer ======= -->
+ 
+   
+
+{% endblock %}
+
+{% block footer %}
+ <footer id="footer" class="footer">
+    <div class="copyright">
+      &copy; Copyright <strong><span>EMSI-EXAMS</span></strong>. All Rights Reserved
+    </div>
+    
+  </footer><!-- End Footer -->
+
+{% endblock %}

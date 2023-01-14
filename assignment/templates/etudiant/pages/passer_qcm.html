@@ -1,0 +1,34 @@
+{% extends 'etudiant/pages/base_etudiant.html' %}
+
+{% block content %} 
+
+
+<div class="pagetitle">
+  <div class="card-header ">
+    <h4 class="text-primary m-0 fw-bold">la liste des QCM : </h4>
+    
+  </div>
+
+    <nav>
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="index.html">Afficher Q.C.Ms</a></li>
+        <li class="breadcrumb-item active">Passer Examen</li>
+      </ol>
+    </nav>
+   </div><!-- End Page Title  <div class="d-flex align-items-center  mx-auto "></div>-->
+
+   
+    
+   
+   <section class="section dashboard ">
+       
+      <div class="d-flex justify-content-center align-items-center mx-auto  position-relative" >
+
+                      {% include 'etudiant/parts/start_qcm.html' %}   
+        
+        </div>
+   
+   </section>
+ 
+
+    {% endblock content %} 

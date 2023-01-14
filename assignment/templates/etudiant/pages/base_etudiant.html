@@ -43,18 +43,20 @@
 
  
      <div class="d-flex align-items-center justify-content-between">
-       <a href="{% url 'dashboard' %}" class="logo d-flex align-items-center">
+       <a href="{% url 'dashboard_s' %}" class="logo d-flex align-items-center">
          <img src="{% static 'img/logo.png' %}" alt="">
          <span class="d-none d-lg-block">EMSI-EXAMS</span>
        </a>
        <i class="bi bi-list toggle-sidebar-btn"></i>
      </div><!-- End Logo -->
  
-     <div class="search-bar">
+     <div class="search-bar ">
        <form class="search-form d-flex align-items-center" method="POST" action="#">
          <input type="text" name="query" placeholder="Search" title="Enter search keyword">
          <button type="submit" title="Search"><i class="bi bi-search"></i></button>
        </form>
+      
+      
      </div><!-- End Search Bar -->
  
      <nav class="header-nav ms-auto">
@@ -65,13 +67,13 @@
              <i class="bi bi-search"></i>
            </a>
          </li><!-- End Search Icon-->
- 
          <li class="nav-item d-block "> 
-          <div class="btn-group d-flex align-self-end" role="group">
-          <a  href="{% url 'dashboard' %}" type="button" class="btn btn-primary" id="admin-btn">Admin</a>
-          <a  href="{% url 'dashboard_s' %}" type="button" class="btn btn-primary" id="student-btn">Student</a>
-          </div>
-        </li>
+            <div class="btn-group d-flex align-self-end" role="group">
+            <a  href="{% url 'dashboard' %}" type="button" class="btn btn-primary" id="admin-btn">Admin</a>
+            <a  href="{% url 'dashboard_s' %}" type="button" class="btn btn-primary" id="student-btn">Student</a>
+            </div>
+         </li>
+         
 
          <li class="nav-item dropdown">
  
@@ -217,21 +219,21 @@
          <li class="nav-item dropdown pe-3">
  
            <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-             <img src="{% static 'img/admin_logo.png' %}" alt="Profile" class="rounded-circle">
-             <span class="d-none d-md-block dropdown-toggle ps-2">EMSI-ADMIN</span>
+             <img src="{% static 'img/student_logo.png' %}" alt="Profile" class="rounded-circle">
+             <span class="d-none d-md-block dropdown-toggle ps-2">EMSI-STUDENT</span>
            </a><!-- End Profile Iamge Icon -->
  
            <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
              <li class="dropdown-header">
-               <h6>EMSI-ADMIN</h6>
-               <span>administrator</span>
+               <h6>EMSI-STUDENT</h6>
+               <span>engineering student</span>
              </li>
              <li>
                <hr class="dropdown-divider">
              </li>
  
              <li>
-               <a class="dropdown-item d-flex align-items-center" href="{% url 'profile_admin' %}">
+               <a class="dropdown-item d-flex align-items-center" href="{% url 'profile' %}">
                  <i class="bi bi-person"></i>
                  <span>My Profile</span>
                </a>
@@ -241,7 +243,7 @@
              </li>
  
              <li>
-               <a class="dropdown-item d-flex align-items-center" href="{% url 'profile_admin' %}">
+               <a class="dropdown-item d-flex align-items-center" href="{% url 'profile' %}">
                  <i class="bi bi-gear"></i>
                  <span>Account Settings</span>
                </a>
@@ -276,61 +278,74 @@
     <ul class="sidebar-nav" id="sidebar-nav">
 
       <li class="nav-item">
-        <a class="nav-link " href="{% url 'dashboard' %}">
+        <a class="nav-link " href="{% url 'dashboard_s' %}">
           <i class="bi bi-grid"></i>
           <span>Dashboard</span>
         </a>
-        <li class="nav-heading">Pages</li>
       </li><!-- End Dashboard Nav -->
-      <li class="nav-item">
-        <a class="nav-link  collapsed" href="{% url 'student' %}">
-          <i class="bi bi-grid"></i>
-          <span>Student</span>
-        </a>
-      </li><!-- End Student Nav -->
+      <!-- End Student Nav -->
      <!--  <a class="nav-link " href="{% url 'exam' %}" disabled>
         <i class="bi bi-grid"></i>
         <span>Q.C.M</span>
       </a>
     </li> -->
     <!-- End Student Nav -->
-
+    <li class="nav-heading">Pages</li>
     <li class="nav-item">
       <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
         <i class="bi bi-journal-text"></i><span>Q.C.M</span><i class="bi bi-chevron-down ms-auto"></i>
       </a>
       <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
         <li>
-          <a href="{% url 'exam' %}">
-            <i class="bi bi-circle"></i><span>Afficher Q.C.Ms</span>
-          </a>
-        </li>
+            <a href="{% url 'list_exam' %}">
+              <i class="bi bi-circle"></i><span>Afficher Q.C.Ms</span>
+            </a>
+          </li>
         <li>
-          <a href="{% url 'gestion_exam' %}">
-            <i class="bi bi-circle"></i><span>Gestion Q.C.Ms</span>
+          <a href="{% url 'resultat_qcm' %}">
+            <i class="bi bi-circle"></i><span>My Result Q.C.Ms</span>
           </a>
         </li>
+        
        
       </ul>
     </li><!-- End Forms Nav -->
   
-     
+      
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="{% url 'profile_admin' %}">
+        <a class="nav-link collapsed" href="{% url 'profile' %}">
           <i class="bi bi-person"></i>
           <span>Profile</span>
         </a>
       </li><!-- End Profile Page Nav -->
+
+      <!-- End F.A.Q Page Nav -->
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#">
+          <i class="bi bi-envelope"></i>
+          <span>Contact</span>
+        </a>
+      </li><!-- End Contact Page Nav -->
+
+      <!-- End Register Page Nav -->
+
       <li class="nav-item">
         <a class="nav-link collapsed" href="#">
           <i class="bi bi-box-arrow-in-right"></i>
           <span>Log Out</span>
         </a>
       </li><!-- End Login Page Nav -->
-    </ul>
-  </aside><!-- End Sidebar-->
 
+
+    </ul>
+
+  </aside><!-- End Sidebar-->
+  
+  
+  
+  
    <main id="main" class="main">
 {% block content %}
 
@@ -340,19 +355,7 @@
 
   </main><!-- End #main -->
 
-  <!-- ======= Footer ======= -->
-  <footer id="footer" class="footer">
-    <div class="copyright">
-      &copy; Copyright <strong><span>NiceAdmin</span></strong>. All Rights Reserved
-    </div>
-    <div class="credits">
-      <!-- All the links in the footer should remain intact. -->
-      <!-- You can delete the links only if you purchased the pro version. -->
-      <!-- Licensing information: https://bootstrapmade.com/license/ -->
-      <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/ -->
-      Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
-    </div>
-  </footer><!-- End Footer -->
+ 
 
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
@@ -370,18 +373,19 @@
 <!-- Template Main JS File -->
 <script src="{% static 'js/main.js' %}"></script>
 <script>
-  let adminBtn = document.getElementById("admin-btn");
+    let adminBtn = document.getElementById("admin-btn");
 let studentBtn = document.getElementById("student-btn");
 
 adminBtn.addEventListener("click", function() {
-adminBtn.classList.add("active");
-studentBtn.classList.remove("active");
+  adminBtn.classList.add("active");
+  studentBtn.classList.remove("active");
 });
 
 studentBtn.addEventListener("click", function() {
-studentBtn.classList.add("active");
-adminBtn.classList.remove("active");
+  studentBtn.classList.add("active");
+  adminBtn.classList.remove("active");
 });
+
 </script>
 
 </body>

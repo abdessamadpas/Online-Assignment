@@ -1,0 +1,22 @@
+{% extends 'etudiant/pages/base_etudiant.html' %}
+
+{% block content %} 
+
+<section class="section dashboard">
+    <div class="row ">
+        
+        <div class="card-header py-3">
+            <p class="text-primary m-0 fw-bold">Resultat des QCM : </p>
+        </div>
+
+   
+          
+    
+          
+    </div>
+
+    <!--liste exams-->
+    {% include 'etudiant/parts/resultat.html' %}   
+    </section>
+
+{% endblock content %}

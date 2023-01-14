@@ -1,0 +1,131 @@
+{% extends 'etudiant/pages/base_etudiant.html' %}
+
+{% block content %} 
+
+
+<div class="pagetitle">
+    <h1>Dashboard</h1>
+    <nav>
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+        <li class="breadcrumb-item active">Dashboard</li>
+      </ol>
+    </nav>
+   </div><!-- End Page Title -->
+
+    <section class="section dashboard">
+    <div class="row">
+        
+            <!-- Sales Card -->
+            <div class="col-md-6 col-xl-6 mb-4">
+              <div class="card info-card sales-card">
+                
+  
+                <div class="card-body">
+                  <h5 class="card-title">Les Modules <span>| 4IIIR </span></h5>
+  
+                  <div class="d-flex align-items-center">
+                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                      <i class="bi bi-book"></i>
+                    </div>
+                    <div class="ps-3">
+                      <h6>5</h6>
+                      <span class="text-success small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">increase</span>
+  
+                    </div>
+                  </div>
+                </div>
+  
+              </div>
+            </div><!-- End Sales Card -->
+  
+            <!-- Revenue Card -->
+            <div class="col-md-6 col-xl-6 mb-4">
+              <div class="card info-card revenue-card">
+  
+                
+                <div class="card-body">
+                  <h5 class="card-title">Les QCMs <span>| Semestre I</span></h5>
+  
+                  <div class="d-flex align-items-center">
+                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                        <i class="bi-card-checklist"></i>
+                    </div>
+                    <div class="ps-3">
+                      <h6>10</h6>
+                      <span class="text-success small pt-1 fw-bold">8%</span> <span class="text-muted small pt-2 ps-1">increase</span>
+  
+                    </div>
+                  </div>
+                </div>
+  
+              </div>
+            </div><!-- End Revenue Card -->
+  
+            <!-- Customers Card -->
+            <!-- End Customers Card -->
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Graphe des activites annuel</h5>
+  
+                <!-- Stacked Bar Chart -->
+                <canvas id="stakedBarChart" style="max-height: 400px;"></canvas>
+                <script>
+                  document.addEventListener("DOMContentLoaded", () => {
+                    new Chart(document.querySelector('#stakedBarChart'), {
+                      type: 'bar',
+                      data: {
+                        labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+                        datasets: [{
+                            label: 'Les Cours ',
+                            data: [70, 10, 18, 48, 74,50,45],
+                            backgroundColor: 'rgb(255, 99, 132)',
+                          },
+                          {
+                            label: 'Les Traveaux Pratique ',
+                            data: [10, 15, 12, 62, 95,30,35],
+                            backgroundColor: 'rgb(75, 192, 192)',
+                          },
+                          {
+                            label: 'Les Projects',
+                            data: [10, 1, 22, 35, 62,20,20],
+                            backgroundColor: 'rgb(255, 205, 86)',
+                          },
+                          
+                        ]
+                      },
+                      options: {
+                        plugins: {
+                          title: {
+                            display: true,
+                            text: ''
+                          },
+                        },
+                        responsive: true,
+                        scales: {
+                          x: {
+                            stacked: true,
+                          },
+                          y: {
+                            stacked: true
+                          }
+                        }
+                      }
+                    });
+                  });
+                </script>
+                <!-- End Stacked Bar Chart -->
+  
+              </div>
+            </div>
+          </div>
+    </div>
+    
+  
+    </section>
+ 
+
+{% endblock content %}

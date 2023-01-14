@@ -134,9 +134,11 @@ USE_TZ = True
 #todo change the static files directory to your own
 STATIC_URL = 'static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'assignment/static')
 ]
+
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 #login

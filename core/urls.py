@@ -27,11 +27,8 @@ urlpatterns = [
     path('students/EditModels/', views.EditModels, name='EditModels' ),
 
     #? modules section
-<<<<<<< HEAD
    # path('<module_id>/', CourseDetail, name='course'),
-=======
     #path('<module_id>/', CourseDetail, name='course'),
->>>>>>> 0a8e38fca6abb436d9c7326480392331b95f2551
 	#path('<modele_id>/enroll', Enroll, name='enroll'),
 	#path('<modele_id>/edit', EditCourse, name='edit-course'),
 	#path('<modele_id>/delete', DeleteCourse, name='delete-course'),
@@ -53,14 +50,12 @@ urlpatterns = [
     path('profile/', views.profile_admin, name='profile_admin' ),
  #   -------------------- paths etudiant -------------------- #
      path('etudiant/',views_etudiant.dashboard_s , name='dashboard_s'),
-<<<<<<< HEAD
 
-=======
     #path('settings/editSettings/', views.editSettings, name='editSettings' ),
 
     #path('logout/', views.logoutUser, name='logout' ),
     #path('register/', views.registerPage, name='register' ),
->>>>>>> 0a8e38fca6abb436d9c7326480392331b95f2551
+
     path('etudiant/list_exam',views_etudiant.afficher_qcm , name='list_exam'),
     path('etudiant/passer_qcm',views_etudiant.passer_qcm , name='passer_qcm'),
     path('etudiant/resultat_qcm',views_etudiant.resultat_qcm , name='resultat_qcm'),

@@ -109,7 +109,7 @@
     </div>
     <div class="modal-body">
       <!-- form details -->
-                    <form class="details-or-view-form">
+                    <form class="details-or-view-form" >
                         <div class="form-group">
                         <label for="name">Name</label>
                         <input type="text" class="form-control name" id="name" placeholder="Enter name">
@@ -230,7 +230,7 @@
     </div>
     <div class="modal-body">
          <!-- form details -->
-         <form class="add-form" method='POST'>
+         <form class="add-form" method='POST' id="addStudent>
           {% csrf_token %}
             <div class="form-group">
               <label for="name">Name</label>
@@ -244,8 +244,8 @@
               <label for="product">groupe</label>
               <select class="form-control status" id="groupe">
                 {% comment %} for block {% endcomment %}
-                <option>Active</option>
-                <option>Inactive</option>
+                <option>1</option>
+                <option>2</option>
             </select>
             </div>   
             <div class="form-group">
@@ -257,7 +257,7 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-              <button type="submit" class="btn btn-primary add_item" data-dismiss="modal">add new item</button>
+              <input type="submit" value="add new student" class="btn btn-primary add_item" data-dismiss="modal" />
             </div>
         </form>
 <!-- form details -->
@@ -270,6 +270,7 @@
   </div>
 </div>
 </div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
 
   $(document).ready(function() {
@@ -308,18 +309,37 @@
       }
       });
 
- }
- )
-
-
-}
+ })}
 ); 
-// ajouter fuction 
 
 
+
+
+// fetxh  fuction 
+$(document).ready(function(){
+  $("#addStudent").submit(function(e){
+    console.log("wewe"); 
+      e.preventDefault();
+      var formData = $(this).serialize();
+      console.log(formData);  
+      $.ajax({
+          type: "POST",
+          url: "{% url 'addStudent' %}",
+          data: formData,
+          success: function(data) {
+              // handle the returned data here
+              if(data.status === 'success'){
+                alert("Form submitted successfully!");
+                $("#addStudent")[0].reset();
+            }else{
+                alert("An error occured, please try again later");
+           }
+          }
+      });
+  });
+});
 
 </script>
-
 {% endblock content %}
 
 

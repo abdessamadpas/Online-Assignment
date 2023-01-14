@@ -7,7 +7,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [ 
-    path('', include('core.urls')),
+    path('dashboard/', include('core.urls')),
     path('admin/', admin.site.urls),
 
    #path('', lambda request: redirect('dashboard/', permanent=True)),

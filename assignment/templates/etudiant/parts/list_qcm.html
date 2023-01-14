@@ -1,0 +1,136 @@
+{% load static %}
+<style>
+
+body {
+    background-color: #eee
+}
+
+.card {
+    border: none;
+    border-radius: 10px
+}
+
+.c-details span {
+    font-weight: 300;
+    font-size: 13px
+}
+
+.icon {
+    width: 50px;
+    height: 50px;
+    background-color: #eee;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 39px
+}
+
+.badge span {
+    background-color: #fffbec;
+    width: 60px;
+    height: 25px;
+    padding-bottom: 3px;
+    border-radius: 5px;
+    display: flex;
+    color: #fed85d;
+    justify-content: center;
+    align-items: center
+}
+
+.progress {
+    height: 10px;
+    border-radius: 10px
+}
+
+.progress div {
+    background-color: red
+}
+
+.text1 {
+    font-size: 14px;
+    font-weight: 600
+}
+
+.text2 {
+    color: #a5aec0
+}
+
+</style>
+
+<section class="section dashboard">
+    <div class="row">
+
+<div class="container mt-5 mb-3">
+    
+  <div class="row">
+      <div class="col-md-6">
+          <div class="card p-3 mb-2">
+              <div class="d-flex justify-content-between">
+                  <div class="d-flex flex-row align-items-center">
+                      <div class="icon"> <i class="bi bi-book"></i> </div>
+                      <div class="ms-2 c-details">
+                          <h6 class="mb-0">CC 1 - PY</h6> <span>1 days ago</span>
+                      </div>
+                  </div>
+                  <div class="badge"> <span>Django</Datag></span> </div>
+              </div>
+              <div class="mt-5">
+                  <h3 class="heading">Installation d'envirenement<br>Les notion de base</h3>
+                  <div class="float-right">
+
+                    <a href="{% url 'passer_qcm' %}" class="btn btn-primary a-btn-slide-text">
+                        <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+                        <span><strong>Passer L'Examen</strong></span>            
+                    </a>
+                    <a href="#" class="btn btn-primary a-btn-slide-text disabled" data-toggle="modal" data-target="#deleteModal">
+                       <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                        <span><strong>Voir Result</strong></span>            
+                    </a>     
+            
+            </div>
+            <br>
+
+                 
+              </div>
+          </div>
+      </div>
+      
+      <div class="col-md-6">
+        <div class="card p-3 mb-2">
+            <div class="d-flex justify-content-between">
+                <div class="d-flex flex-row align-items-center">
+                    <div class="icon"> <i class="bi bi-book"></i> </div>
+                    <div class="ms-2 c-details">
+                        <h6 class="mb-0">CC 1 - PY</h6> <span>1 days ago</span>
+                    </div>
+                </div>
+                <div class="badge"> <span>Django</Datag></span> </div>
+            </div>
+            <div class="mt-5">
+                <h3 class="heading">Installation d'envirenement<br>Les notion de base</h3>
+                <div class="float-right">
+              
+              
+              <a href="{% url 'passer_qcm' %}" class="btn btn-primary a-btn-slide-text">
+                  <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+                  <span><strong>Passer L'Examen</strong></span>            
+              </a>
+              <a href="#" class="btn btn-primary a-btn-slide-text disabled" data-toggle="modal" data-target="#deleteModal">
+                 <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                  <span><strong>Voir Result</strong></span>            
+              </a>
+          </div>
+          <br>
+
+                
+            </div>
+        </div>
+    </div>
+ 
+      
+  </div>
+</div>
+
+</div>
+</section>

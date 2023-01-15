@@ -14,9 +14,15 @@ from django.contrib.auth import views as authViews
 
 urlpatterns = [
 
+
+    path('', views.dashboard , name='dashboarde'),
+   	path('login/', authViews.LoginView.as_view(template_name='admine/pages/login.html'), name='login'),
+   	path('logout/', authViews.LogoutView.as_view(), {'next_page' : 'login'}, name='logout'),
+
     path('', views.dashboard , name='dashboard'),
    	#path('login/', authViews.LoginView.as_view(template_name='admine/pages/login.html'), name='login'),
    	#path('logout/', authViews.LogoutView.as_view(), {'next_page' : 'login'}, name='logout'),
+
    	#path('changepassword/', PasswordChange, name='change_password'),
    	#path('changepassword/done', PasswordChangeDone, name='change_password_done'),
 
@@ -54,6 +60,8 @@ urlpatterns = [
     path('settings/', views.settings, name='settings' ),
     path('profile/', views.profile_admin, name='profile_admin' ),
  #   -------------------- paths etudiant -------------------- #
+
+
      path('etudiant/',views_etudiant.dashboard_s , name='dashboard_s'),
 
     #path('settings/editSettings/', views.editSettings, name='editSettings' ),

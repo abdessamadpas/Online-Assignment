@@ -64,16 +64,17 @@ body {
 <div class="container mt-5 mb-3">
     
   <div class="row">
+    {% for exam in exams %}
       <div class="col-md-6">
           <div class="card p-3 mb-2">
               <div class="d-flex justify-content-between">
                   <div class="d-flex flex-row align-items-center">
                       <div class="icon"> <i class="bi bi-book"></i> </div>
                       <div class="ms-2 c-details">
-                          <h6 class="mb-0">CC 1 - PY</h6> <span>1 days ago</span>
+                          <h6 class="mb-0">{{exam.name}}</h6> <span>{{exam.date}} days ago</span>
                       </div>
                   </div>
-                  <div class="badge"> <span>Django</Datag></span> </div>
+                  <div class="badge"> <span>{{exam.matiere_id.name}}</Datag></span> </div>
               </div>
               <div class="mt-5">
                   <h3 class="heading">Installation d'envirenement<br>Les notion de base</h3>
@@ -95,38 +96,8 @@ body {
               </div>
           </div>
       </div>
+    {% endfor %}
       
-      <div class="col-md-6">
-        <div class="card p-3 mb-2">
-            <div class="d-flex justify-content-between">
-                <div class="d-flex flex-row align-items-center">
-                    <div class="icon"> <i class="bi bi-book"></i> </div>
-                    <div class="ms-2 c-details">
-                        <h6 class="mb-0">CC 1 - PY</h6> <span>1 days ago</span>
-                    </div>
-                </div>
-                <div class="badge"> <span>Django</Datag></span> </div>
-            </div>
-            <div class="mt-5">
-                <h3 class="heading">Installation d'envirenement<br>Les notion de base</h3>
-                <div class="float-right">
-              
-              
-              <a href="{% url 'passer_qcm' %}" class="btn btn-primary a-btn-slide-text">
-                  <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
-                  <span><strong>Passer L'Examen</strong></span>            
-              </a>
-              <a href="#" class="btn btn-primary a-btn-slide-text disabled" data-toggle="modal" data-target="#deleteModal">
-                 <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                  <span><strong>Voir Result</strong></span>            
-              </a>
-          </div>
-          <br>
-
-                
-            </div>
-        </div>
-    </div>
  
       
   </div>

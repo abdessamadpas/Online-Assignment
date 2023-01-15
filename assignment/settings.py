@@ -27,6 +27,8 @@ DEBUG = os.environ.get('DEBUG')
 #todo change the allowed hosts to your own domain name
 ALLOWED_HOSTS = [
     '127.0.0.1', 
+    '0.0.0.0',
+    'host.docker.internal',
     'localhost',
     'assignment-online.herokuapp.com',
     ]

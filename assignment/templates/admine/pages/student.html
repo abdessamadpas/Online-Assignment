@@ -228,36 +228,50 @@
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
-    <div class="modal-body">
+    <div class="modal-body" id="formwrapper">
          <!-- form details -->
-         <form class="add-form" method='POST' id="addStudent>
+        <form id="addStudents"  method='POST' >
           {% csrf_token %}
+          
             <div class="form-group">
               <label for="name">Name</label>
-              <input type="text" class="form-control name" id="name" placeholder="Enter name">
+              <input type="text" name="name" class="form-control name" id="name" placeholder="Enter name">
             </div>
             <div class="form-group">
               <label for="email">Email</label>
-              <input type="email" class="form-control email" id="email" placeholder="Enter email">
+              <input type="email" name="email" class="form-control email" id="email" placeholder="Enter email">
             </div>
             <div class="form-group">
-              <label for="product">groupe</label>
-              <select class="form-control status" id="groupe">
+              <label for="groupe">groupe</label>
+              <select class="form-control status" name="group_id" id="groupe">
                 {% comment %} for block {% endcomment %}
-                <option>1</option>
-                <option>2</option>
+                {% for option in options_list_groups %}
+                  <option value="{{ option.id }}">{{ option.name }}</option>
+                {% endfor %}
             </select>
-            </div>   
+            </div>  
+            
             <div class="form-group">
+              <label for="matiere">matiere</label>
+              <select class="form-control status" name="matiere" id="matiere">
+                {% comment %} for block {% endcomment %}
+                {% for option in options_list_matieres %}
+                  <option value="{{ option.id }}">{{ option.name }}</option>
+                {% endfor %}
+            </select>
+            </div>
+
+
+            {% comment %} <div class="form-group">
               <label for="status">Status</label>
               <select class="form-control status" id="status">
-                  <option>Active</option>
+                  <option value="">Active</option>
                   <option>Inactive</option>
               </select>
-            </div>
+            </div> {% endcomment %}
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-              <input type="submit" value="add new student" class="btn btn-primary add_item" data-dismiss="modal" />
+              <input id='submit' type="submit" value="submit" class="btn btn-primary add_item" data-dismiss="modal" />
             </div>
         </form>
 <!-- form details -->
@@ -268,10 +282,10 @@
       <button type="submit" class="btn btn-primary add_item" data-dismiss="modal">add new item</button>
     </div> {% endcomment %}
   </div>
+  </div>
 </div>
-</div>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
+
+<script type="text/javascript">
 
   $(document).ready(function() {
  $(".view-or-edite").click(function() {
@@ -315,29 +329,30 @@
 
 
 
-// fetxh  fuction 
-$(document).ready(function(){
-  $("#addStudent").submit(function(e){
-    console.log("wewe"); 
-      e.preventDefault();
-      var formData = $(this).serialize();
-      console.log(formData);  
-      $.ajax({
-          type: "POST",
-          url: "{% url 'addStudent' %}",
-          data: formData,
-          success: function(data) {
-              // handle the returned data here
-              if(data.status === 'success'){
-                alert("Form submitted successfully!");
-                $("#addStudent")[0].reset();
-            }else{
-                alert("An error occured, please try again later");
-           }
-          }
-      });
-  });
-});
+wewe()
+
+function wewe(){
+  var form = document.getElementById('addStudents')
+  form.addEventListener('submit', function(e){
+    e.preventDefault()
+    console.log('form submitted')
+  })
+  console.log(form)
+  var url = 'http://127.0.0.1:8000/dashboard/students/add_list_Student/'
+  fetch(url)
+  .then((resp) => resp.json())
+  .then(function(data){
+    console.log(data)
+  })
+}
+var form = document.getElementById('addStudents')
+form.addEventListener('submit', function(e){
+  e.preventDefault()
+  console.log('form submitted')
+})
+
+
+
 
 </script>
 {% endblock content %}

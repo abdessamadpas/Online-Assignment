@@ -7,7 +7,12 @@ from core.models.auth.models import *
 class students_display(admin.ModelAdmin):
 
     list_filter= ('name', 'email', 'group_id')
-    list_display = ('name','email','group_id', 'matiere')
+    list_display = ('name','email','group_id')
+
+class examens_display(admin.ModelAdmin):
+
+    list_filter= ('name', 'duration', 'group_id','matier_id')
+    list_display = ('name','duration','group_id','matier_id')
 
 admin.site.register(Admine)
 admin.site.register(Answer)

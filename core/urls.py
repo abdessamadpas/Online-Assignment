@@ -1,7 +1,8 @@
 from django.urls import path
 from core import views , views_etudiant
 from django.shortcuts import redirect
-from core.views.crud_Student.addStudent import addStudent
+from core.views.crud_Student.add_listStudent import add_listStudent
+from core.views.crud_Student.put_delete_Student import put_delete_Student
 #from auth.views import UserProfile, Signup, PasswordChange, PasswordChangeDone, EditProfile
 
 from django.contrib.auth import views as authViews 
@@ -26,9 +27,10 @@ urlpatterns = [
    	#path('changepassword/done', PasswordChangeDone, name='change_password_done'),
 
     path('students/', views.student, name='student' ),
+    
     #? api for add student 
-    path('students/addStudent/',addStudent, name='addStudent' ),
-
+    path('students/add_list_Student/',add_listStudent.as_view(), name='addStudent' ),
+    path('students/put_delete_Student/<int:pk>', put_delete_Student.as_view(), name='deleteStudent'),
     #path('students/addStudent/', views.addStudent, name='addStudent' ),
     #   path('students/deleteStudent/', views.deleteStudent, name='deleteStudent' ),  
     path('students/editStudent/', views.editStudent, name='editStudent' ),

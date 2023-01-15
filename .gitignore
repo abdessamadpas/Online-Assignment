@@ -2,7 +2,7 @@
 env/
 venv/
 __pycache__/
-
+.env
 
 __pycache__
 /__pycache__/
@@ -10,7 +10,11 @@ __pycache__
 Pipfile*
 .env
 core/__pycache__/
-
+*/__pycache__/*
+*/__pycache__/
+/__pycache__/*
+/__pycache__
+__pycache__/
 # django
 db.sqlite3
 

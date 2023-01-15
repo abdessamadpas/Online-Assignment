@@ -295,6 +295,7 @@ $(document).ready(function(){
                         <th>ID </th>
                         <th>NOM</th>
                         <th>MODULE</th>
+                        <th>Groupe</th>
                         <th>DATE CREATION</th>						
                         <th>STATUS</th>						
                         <th>NOMBRE QTS</th>
@@ -302,34 +303,19 @@ $(document).ready(function(){
                     </tr>
                 </thead>
                 <tbody>
+                    {% for exam in exams %}
                     <tr>
-                        <td>1</td>
-                        <td><a href="#"> CC 1 - PY</a></td>
-                        <td>DJANGO</td>
-                        <td>Jun 15, 2017</td>                        
+                        <td>{{exam.id}}</td>
+                        <td><a href="#">{{exam.name}}</a></td>
+                        <td>{{exam.matiere_id.name}}</td>
+                        <td>{{exam.group_id.name}}</td>
+                        <td>Jun 15, 2023</td>                        
                         <td><span class="status text-success">&bull;</span> NOT PASSED</td>
-                        <td>20</td>
-                        <td><a href="{% url 'details_exam' %}" class="" title="View Details" data-toggle="tooltip"><i class="material-icons">&#xE5C8;</i></a></td>
+                        <td>{{ exam.question_set.count }}</td>
+                        <td><a href="{% url 'details_exam' %}?exam_id={{exam.id}}" class="show_details_exam" title="View Details" data-toggle="tooltip"><i class="material-icons">&#xE5C8;</i></a></td>
                     </tr>
-                    <tr>
-                        <td>2</td>
-                        <td><a href="#"> CC 1 - .NET-Core</a></td>
-                        <td>.NET-CORE</td>                       
-                        <td>Jun 21, 2017</td>
-                        <td><span class="status text-info">&bull;</span> PASSED</td>
-                        <td>25</td>
-                        <td><a href="{% url 'details_exam' %}" class="" title="View Details" data-toggle="tooltip"><i class="material-icons">&#xE5C8;</i></a></td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td><a href="#">CC 2 - PY</a></td>
-                        <td>DJANGO</td>
-                        <td>Jul 04, 2017</td>
-                        <td><span class="status text-danger">&bull;</span> Cancelled</td>
-                        <td>30</td>
-                       
-                        <td><a href="{% url 'details_exam' %}" class="" title="View Details" data-toggle="tooltip"><i class="material-icons">&#xE5C8;</i></a></td>                        
-                    </tr>
+                   
+                    {% endfor %}
                   
                 </tbody>
             </table>
@@ -350,3 +336,7 @@ $(document).ready(function(){
         </div>
     </div>        
 </div>     
+<script>
+  
+  </script>
+  

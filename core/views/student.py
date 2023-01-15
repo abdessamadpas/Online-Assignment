@@ -6,8 +6,11 @@ from core.models import Student
 from core.models.group import Group
 from core.models.matiere import Matiere
 from core.forms.student import StudentForm
+from django.contrib.auth.decorators import login_required
+
 
 # Create your views here.
+@login_required
 def student (request):
 
     students = Student.objects.all()

@@ -16,7 +16,7 @@ urlpatterns = [
 
 
     path('', views.dashboard , name='dashboarde'),
-   	path('login/', authViews.LoginView.as_view(template_name='admine/pages/login.html'), name='login'),
+   	path('login/', authViews.LoginView.as_view(template_name='admine/pages/login.html'), {'next_page' : 'dashboard'}, name='login'),
    	path('logout/', authViews.LogoutView.as_view(), {'next_page' : 'login'}, name='logout'),
 
     path('', views.dashboard , name='dashboard'),

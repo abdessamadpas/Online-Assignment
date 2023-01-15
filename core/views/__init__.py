@@ -8,7 +8,6 @@ from core.views.student import *
 from core.views.settings import *
 from core.views.EditModels import *
 from core.views.editStudent import *
-from core.views.loginPage import *
 from core.views.profile_admin import *
 
 #  -----------------------------views etudiant ----------------------------------- #

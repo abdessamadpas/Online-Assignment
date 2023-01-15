@@ -7,7 +7,10 @@ from core.models.question import Question
 from core.models.exam import Exam
 from django.template import loader
 
+from django.contrib.auth.decorators import login_required
+
 # Create your views here.
+@login_required
 def exam (request):
     exams = Exam.objects.all().prefetch_related('question_set')
    

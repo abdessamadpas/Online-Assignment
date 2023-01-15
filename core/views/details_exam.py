@@ -5,7 +5,10 @@ from django.http import HttpResponse
 from core.models import Exam
 from core.models.answer import Answer
 from core.models.question import Question
+from django.contrib.auth.decorators import login_required
 
+# Create your views here.
+@login_required
 def details_exam(request):
     exam_id = request.GET.get('exam_id')
     exam = Exam.objects.get(id=exam_id)

@@ -1,7 +1,7 @@
 from django.urls import path
 from core import views , views_etudiant
 from django.shortcuts import redirect
-
+from core.views.crud_Student.addStudent import addStudent
 #from auth.views import UserProfile, Signup, PasswordChange, PasswordChangeDone, EditProfile
 
 from django.contrib.auth import views as authViews 
@@ -13,13 +13,22 @@ from django.contrib.auth import views as authViews
 
 urlpatterns = [
 
+
     path('', views.dashboard , name='dashboarde'),
    	path('login/', authViews.LoginView.as_view(template_name='admine/pages/login.html'), name='login'),
    	path('logout/', authViews.LogoutView.as_view(), {'next_page' : 'login'}, name='logout'),
+
+    path('', views.dashboard , name='dashboard'),
+   	#path('login/', authViews.LoginView.as_view(template_name='admine/pages/login.html'), name='login'),
+   	#path('logout/', authViews.LogoutView.as_view(), {'next_page' : 'login'}, name='logout'),
+
    	#path('changepassword/', PasswordChange, name='change_password'),
    	#path('changepassword/done', PasswordChangeDone, name='change_password_done'),
 
     path('students/', views.student, name='student' ),
+    #? api for add student 
+    path('students/addStudent/',addStudent, name='addStudent' ),
+
     #path('students/addStudent/', views.addStudent, name='addStudent' ),
     #   path('students/deleteStudent/', views.deleteStudent, name='deleteStudent' ),  
     path('students/editStudent/', views.editStudent, name='editStudent' ),

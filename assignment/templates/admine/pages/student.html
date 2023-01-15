@@ -51,20 +51,21 @@
     <table class="table table-borderless datatable" id="table_student">
       <thead>
         <tr>
+          <th scope="col">id</th>
           <th scope="col">Name</th>
           <th scope="col">Email</th>
-          <th scope="col">Product</th>
-          <th scope="col">Price</th>
+          <th scope="col">Groupe</th>
           <th scope="col">Status</th>
           <th scope="col">Action</th>
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td class="row-name" scope="row"><a href="#">#2457</a></td>
-          <td class="row-email">Brandon Jacob</td>
-          <td class="row-product"><a href="#" class="text-primary">At praesentium minu</a></td>
-          <td class="row-price">$64</td>
+        {% for student in students %}
+          <tr>
+          <td class="row-name" scope="row"><a href="#">{{student.id}}</a></td>
+          <td class="row-class" scope="row"><a href="#">{{student.name}}</a></td>
+          <td class="row-email">{{student.email}}</td>
+          <td class="row-product"><a href="#" class="text-primary">{{student.group_id.name}}</a></td>
           <td class="row-status"><span class="badge bg-success">Approved</span></td>
           <td>
 
@@ -80,86 +81,10 @@
         
         </td>
         </tr>
-        <tr>
-          <td scope="row"><a href="#">#2147</a></td>
-          <td>Bridie Kessler</td>
-          <td><a href="#" class="text-primary">Blanditiis dolor omnis similique</a></td>
-          <td>$47</td>
-          <td><span class="badge bg-warning">Pending</span></td>
-          <td>
+        {% endfor %}
 
-            <a class="view-or-edite" data-toggle="modal" data-target="#editModal" href=""><i class="bi bi-pen  "></i></a>
-
-            &nbsp; &nbsp;
-
-           <a class="delete"  data-toggle="modal" data-target="#deleteModal" href=""><i class="bi bi-trash "></i></a>
-
-              </i>&nbsp; &nbsp;
-
-           <a class="view-or-edite"  data-toggle="modal" data-target="#detailsModal"  href="#"><i class="bi bi-eye " ></i></a>
         
-        </td>
-        </tr>
-        <tr>
-          <td scope="row"><a href="#">#2049</a></td>
-          <td>Ashleigh Langosh</td>
-          <td><a href="#" class="text-primary">At recusandae consectetur</a></td>
-          <td>$147</td>
-          <td><span class="badge bg-success">Approved</span></td>
-          <td>
 
-            <a class="view-or-edite" data-toggle="modal" data-target="#editModal" href=""><i class="bi bi-pen  "></i></a>
-
-            &nbsp; &nbsp;
-
-           <a class="delete"  data-toggle="modal" data-target="#deleteModal" href=""><i class="bi bi-trash "></i></a>
-
-              </i>&nbsp; &nbsp;
-
-           <a class="view-or-edite"  data-toggle="modal" data-target="#detailsModal"  href="#"><i class="bi bi-eye " ></i></a>
-        
-        </td>
-        </tr>
-        <tr>
-          <td scope="row"><a href="#">#2644</a></td>
-          <td>Angus Grady</td>
-          <td><a href="#" class="text-primar">Ut voluptatem id earum et</a></td>
-          <td>$67</td>
-          <td><span class="badge bg-danger">Rejected</span></td>
-          <td>
-
-            <a class="view-or-edite" data-toggle="modal" data-target="#editModal" href=""><i class="bi bi-pen  "></i></a>
-
-            &nbsp; &nbsp;
-
-           <a class="delete"  data-toggle="modal" data-target="#deleteModal" href=""><i class="bi bi-trash "></i></a>
-
-              </i>&nbsp; &nbsp;
-
-           <a class="view-or-edite"  data-toggle="modal" data-target="#detailsModal"  href="#"><i class="bi bi-eye " ></i></a>
-        
-        </td>
-        </tr>
-        <tr>
-          <td scope="row"><a href="#">#2644</a></td>
-          <td>Raheem Lehner</td>
-          <td><a href="#" class="text-primary">Sunt similique distinctio</a></td>
-          <td>$165</td>
-          <td><span class="badge bg-success">Approved</span></td>
-            <td>
-
-                <a class="view-or-edite" data-toggle="modal" data-target="#editModal" href=""><i class="bi bi-pen  "></i></a>
-
-                &nbsp; &nbsp;
-    
-               <a class="delete"  data-toggle="modal" data-target="#deleteModal" href=""><i class="bi bi-trash "></i></a>
-    
-                  </i>&nbsp; &nbsp;
-    
-               <a class="view-or-edite"  data-toggle="modal" data-target="#detailsModal"  href="#"><i class="bi bi-eye " ></i></a>
-        
-        </td>
-        </tr>
       </tbody>
     </table>
 
@@ -305,42 +230,96 @@
     </div>
     <div class="modal-body">
          <!-- form details -->
-         <form class="add-form">
+         <form class="add-form" method='POST'>
+          {% csrf_token %}
             <div class="form-group">
-            <label for="name">Name</label>
-            <input type="text" class="form-control name" id="name" placeholder="Enter name">
+              <label for="name">Name</label>
+              <input type="text" class="form-control name" id="name" placeholder="Enter name">
             </div>
             <div class="form-group">
-            <label for="email">Email</label>
-            <input type="email" class="form-control email" id="email" placeholder="Enter email">
+              <label for="email">Email</label>
+              <input type="email" class="form-control email" id="email" placeholder="Enter email">
             </div>
             <div class="form-group">
-            <label for="product">Product</label>
-            <input type="text" class="form-control product " id="product" placeholder="Enter product">
-            </div>
-            <div class="form-group">
-            <label for="price">Price</label>
-            <input type="text" class="form-control price" id="price" placeholder="Enter price">
-            </div>
-            <div class="form-group">
-            <label for="status">Status</label>
-            <select class="form-control status" id="status">
+              <label for="product">groupe</label>
+              <select class="form-control status" id="groupe">
+                {% comment %} for block {% endcomment %}
                 <option>Active</option>
                 <option>Inactive</option>
             </select>
+            </div>   
+            <div class="form-group">
+              <label for="status">Status</label>
+              <select class="form-control status" id="status">
+                  <option>Active</option>
+                  <option>Inactive</option>
+              </select>
             </div>
-           
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+              <button type="submit" class="btn btn-primary add_item" data-dismiss="modal">add new item</button>
+            </div>
         </form>
 <!-- form details -->
       <!-- Form for editing item goes here -->
     </div>
-    <div class="modal-footer">
+    {% comment %} <div class="modal-footer">
       <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-      <button type="button" class="btn btn-primary add_item" data-dismiss="modal">add new item</button>
-    </div>
+      <button type="submit" class="btn btn-primary add_item" data-dismiss="modal">add new item</button>
+    </div> {% endcomment %}
   </div>
 </div>
 </div>
+<script>
+
+  $(document).ready(function() {
+ $(".view-or-edite").click(function() {
+   // Get the row element
+   var target = $(this).attr('data-target');
+              console.log(target);
+       if(target=="#detailsModal")
+      {
+          $(".details-or-view-form input").prop("readonly", true);   
+      }
+      else if(target=="#editModal")
+      {
+          $(".details-or-view-form input").prop("readonly", false);
+      }
+  
+   var row = $(this).closest("tr");
+   // Get the values of each cell in the row
+   var cell1 = row.find("td:eq(0)").text();
+   var cell2 = row.find("td:eq(1)").text();
+   var cell3 = row.find("td:eq(2)").text();
+   var cell4 = row.find("td:eq(3)").text();
+   var cell5 = row.find("td:eq(4)").text();
+   // Display the values in the modal
+      const form_classes = ['name', 'email','product','price','status'];
+      const cells =[cell1,cell2,cell3,cell4,cell5];
+
+      form_classes.forEach(function(form_class, i) {
+      const inputs = document.querySelectorAll(`.details-or-view-form input[id='${form_class}']`);
+     
+    
+      
+      for (const input of inputs) {     
+          
+          input.value = cells[i];
+      }
+      });
+
+ }
+ )
+
+
+}
+); 
+// ajouter fuction 
+
+
+
+</script>
 
 {% endblock content %}
+
 

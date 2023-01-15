@@ -9,6 +9,6 @@ from django.conf.urls.static import static
 urlpatterns = [ 
     path('dashboard/', include('core.urls')),
     path('admin/', admin.site.urls),
+    path('', lambda request: redirect('dashboard/', permanent=True)),
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
-   #path('', lambda request: redirect('dashboard/', permanent=True)),
-]

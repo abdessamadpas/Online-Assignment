@@ -1,9 +1,11 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpRequest,HttpResponse
 
 from django.contrib.auth.decorators import login_required
 
 # Create your views here.
-@login_required
 def getModels (request):
+    user=request.user
+    if not user.is_stuff :
+        return redirect('access_denied_student')
     return render(request,'admine/studentSection.html')

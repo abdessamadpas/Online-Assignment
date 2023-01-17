@@ -4,6 +4,9 @@ from django.shortcuts import redirect
 from core.views.crud_Student.add_listStudent import add_listStudent
 from core.views.crud_Student.put_delete_Student import put_delete_Student
 #from auth.views import UserProfile, Signup, PasswordChange, PasswordChangeDone, EditProfile
+from core.views.auth.customLogin import RoleBasedLoginView
+
+from django.views.generic import TemplateView
 
 from django.contrib.auth import views as authViews 
 
@@ -15,10 +18,11 @@ from django.contrib.auth import views as authViews
 urlpatterns = [
 
 
-    path('', views.dashboard , name='dashboarde'),
-   	path('login/', authViews.LoginView.as_view(template_name='admine/pages/login.html'), {'next_page' : 'dashboard'}, name='login'),
+   	path('login/', RoleBasedLoginView.as_view(), name='login'),
    	path('logout/', authViews.LogoutView.as_view(), {'next_page' : 'login'}, name='logout'),
+    path('admin_dasboard/', views.dashboard , name='dashboarde'),
 
+    path('access_denied_student/', TemplateView.as_view(template_name="public/access_denied.html"), name='access_denied_student'),
     path('', views.dashboard , name='dashboard'),
    	#path('login/', authViews.LoginView.as_view(template_name='admine/pages/login.html'), name='login'),
    	#path('logout/', authViews.LogoutView.as_view(), {'next_page' : 'login'}, name='logout'),

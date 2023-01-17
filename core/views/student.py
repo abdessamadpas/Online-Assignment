@@ -1,4 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+
+
 from django.http import HttpRequest,HttpResponse
 from django.template import loader
 from django.http import HttpResponse
@@ -10,9 +12,12 @@ from django.contrib.auth.decorators import login_required
 
 
 # Create your views here.
-@login_required
+@login_required()
 def student (request):
-
+    user = request.user
+    print("helooooooooo",user)
+    if not user.is_staff:
+        return redirect('access_denied_student')
     students = Student.objects.all()
     groups = Group.objects.all()
     matieres = Matiere.objects.all()

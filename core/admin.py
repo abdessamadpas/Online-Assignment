@@ -3,7 +3,7 @@ from django.contrib import admin
 # Register your models here.
 
 from core.models import * 
-from core.models.auth.models import *
+from core.models.auth.profile import Profile
 class students_display(admin.ModelAdmin):
 
     list_filter= ('name', 'email', 'group_id')

@@ -66,15 +66,17 @@ urlpatterns = [
  #   -------------------- paths etudiant -------------------- #
 
 
-     path('etudiant/',views_etudiant.dashboard_s , name='dashboard_s'),
 
     #path('settings/editSettings/', views.editSettings, name='editSettings' ),
 
     #path('logout/', views.logoutUser, name='logout' ),
     #path('register/', views.registerPage, name='register' ),
-
+    
+    #!  etudent paths 
+    #? take care of the paths and views functions  
+    path('etudiant/',views_etudiant.dashboard_s , name='dashboard_s'),
     path('etudiant/list_exam',views_etudiant.afficher_qcm , name='list_exam'),
-    path('etudiant/passer_qcm',views_etudiant.passer_qcm , name='passer_qcm'),
+    path('etudiant/passer_qcm/<module_id>/<exam_id>',views_etudiant.passer_qcm , name='passer_qcm'),
     path('etudiant/resultat_qcm',views_etudiant.resultat_qcm , name='resultat_qcm'),
      path('etudiant/profile',views_etudiant.profile , name='profile'),
 ]

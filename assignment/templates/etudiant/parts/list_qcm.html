@@ -71,16 +71,15 @@ body {
                   <div class="d-flex flex-row align-items-center">
                       <div class="icon"> <i class="bi bi-book"></i> </div>
                       <div class="ms-2 c-details">
-                          <h6 class="mb-0">{{exam.name}}</h6> <span>{{exam.date}} days ago</span>
+                          <h6 class="mb-0">{{exam.title}}</h6> <span>{{exam.create_date}} days ago</span>
                       </div>
                   </div>
                   <div class="badge"> <span>{{exam.matiere_id.name}}</Datag></span> </div>
               </div>
               <div class="mt-5">
-                  <h3 class="heading">Installation d'envirenement<br>Les notion de base</h3>
+                  <h3 class="heading">{{exam.discription}}<br>Les notion de base</h3>
                   <div class="float-right">
-
-                    <a href="{% url 'passer_qcm' %}" class="btn btn-primary a-btn-slide-text">
+                    <a href="{% url 'passer_qcm' module_id=exam.matiere_id.id exam_id=exam.id %}" class="btn btn-primary a-btn-slide-text">
                         <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
                         <span><strong>Passer L'Examen</strong></span>            
                     </a>

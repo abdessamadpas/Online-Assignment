@@ -15,11 +15,13 @@ def passer_qcm(request, module_id, exam_id):
 
     exam = get_object_or_404(Exam, id=exam_id)
     questions = Question.objects.filter(exam_id = exam.id ).prefetch_related('answer_set')
-    print("questions",questions)    
+    print("questions",questions)
+    profile = Profile.objects.get(user=user)
     context = {
         'exam': exam,
         'module_id': module_id,
         'exam_id': exam_id,
         'questions': questions,
+        'profile': profile
     }
     return render(request, 'etudiant/pages/passer_qcm.html', context)

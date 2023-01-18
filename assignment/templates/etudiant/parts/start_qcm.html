@@ -472,20 +472,20 @@ section .option_list{
     <script>
 // creating an array and passing the number, questions, options, and answers
 let questions = [
-    {% for question in questions  %}
-        {
-    
-            numb: {{forloop.counter}} ,
-            question: "{{question.question}}",
-            answer: "Hyper Text Markup Language",
-            options: [
-                {% for answer in question.answer_set.all %}
-                    "{{answer.answer}}>>> aswer number is {{question.answer_set.count}}",
-                {% endfor %}
-            ]   
-        },
-   {% endfor %}
-    
+   
+    {% for question in questions  %}{
+                numb: {{forloop.counter}} ,
+                id : {{question.id}},
+                question: "{{question.question}}",
+                answer: "{{corr_answer}}",
+                options: [
+                    {% for answer in question.answer_set.all %}
+                        "{{answer.answer}}",
+                        
+                    {% endfor %} 
+                    ] 
+            },  
+    {% endfor %}
 ];
 
 
@@ -560,24 +560,7 @@ const next_btn = document.querySelector("footer .next_btn");
 const bottom_ques_counter = document.querySelector("footer .total_que");
 
 // if Next Que button clicked
-next_btn.onclick = ()=>{
-    if(que_count < questions.length - 1){ //if question count is less than total question length
-        que_count++; //increment the que_count value
-        que_numb++; //increment the que_numb value
-        showQuetions(que_count); //calling showQestions function
-        queCounter(que_numb); //passing que_numb value to queCounter
-        clearInterval(counter); //clear counter
-        clearInterval(counterLine); //clear counterLine
-        startTimer(timeValue); //calling startTimer function
-        startTimerLine(widthValue); //calling startTimerLine function
-        timeText.textContent = "Time Left"; //change the timeText to Time Left
-        next_btn.classList.remove("show"); //hide the next button
-    }else{
-        clearInterval(counter); //clear counter
-        clearInterval(counterLine); //clear counterLine
-        showResult(); //calling showResult function
-    }
-}
+
 
 // getting questions and options from array
 function showQuetions(index){
@@ -586,11 +569,12 @@ function showQuetions(index){
     //creating a new span and div tag for question and option and passing the value using array index
     let que_tag = '<span>'+ questions[index].numb + ". " + questions[index].question +'</span>';
     let option_tag = 
+    
     '<div class="option"><span> '+ questions[index].options[0] +'</span></div>'
     + '<div class="option"><span>'+ questions[index].options[1] +'</span></div>'
-    + '<div class="option"><span>'+ questions[index].options[2] +'</span></div>'
+    + '<div class="option"><span>'+ questions[index].options[2] +'</span></div>+'
     ;
-
+    
     
     que_text.innerHTML = que_tag; //adding new span tag inside que_tag
     option_list.innerHTML = option_tag; //adding new div tag inside option_tag
@@ -598,30 +582,41 @@ function showQuetions(index){
     const option = option_list.querySelectorAll(".option");
 
     // set onclick attribute to all available options
-    for(i=0; i < option.length; i++){
+   for(i=0; i < option.length; i++){
         option[i].setAttribute("onclick", "optionSelected(this)");
-    }
+    } 
 }
 // creating the new div tags which for icons
 let tickIconTag = '<div class="icon tick"><i class="fas fa-check"></i></div>';
 let crossIconTag = '<div class="icon cross"><i class="fas fa-times"></i></div>';
-
+let questions_list= []
+let answers_list = []
 //if user clicked on option
 function optionSelected(answer){
     clearInterval(counter); //clear counter
     clearInterval(counterLine); //clear counterLine
     let userAns = answer.textContent; //getting user selected option
-    let correcAns = questions[que_count].answer; //getting correct answer from array
+    let userQuestion = questions[que_count].id;
+    // push to new list
+    questions_list.push(userQuestion)
+    answers_list.push(userAns.trim())
+    console.log(questions_list);
+    console.log(answers_list)
+    let correcAns =  questions[que_count].answer;  
+       //getting correct answer from array
+    console.log("corr_answer  is", correcAns);
+
+     //getting correct answer from array
     const allOptions = option_list.children.length; //getting all option items
     
     if(userAns == correcAns){ //if user selected option is equal to array's correct answer
         userScore += 1; //upgrading score value with 1
-        answer.classList.add("correct"); //adding green color to correct selected option
-        answer.insertAdjacentHTML("beforeend", tickIconTag); //adding tick icon to correct selected option
+       // answer.classList.add("correct"); //adding green color to correct selected option
+       // answer.insertAdjacentHTML("beforeend", tickIconTag); //adding tick icon to correct selected option
         console.log("Correct Answer");
         console.log("Your correct answers = " + userScore);
     }else{
-        answer.classList.add("incorrect"); //adding red color to correct selected option
+        //answer.classList.add("incorrect"); //adding red color to correct selected option
         answer.insertAdjacentHTML("beforeend", crossIconTag); //adding cross icon to correct selected option
         console.log("Wrong Answer");
 
@@ -639,6 +634,25 @@ function optionSelected(answer){
     next_btn.classList.add("show"); //show the next button if user selected any option
 }
 
+next_btn.onclick = ()=>{
+    if(que_count < questions.length - 1){ //if question count is less than total question length
+        que_count++; //increment the que_count value
+        que_numb++; //increment the que_numb value
+        showQuetions(que_count); //calling showQestions function
+        queCounter(que_numb); //passing que_numb value to queCounter
+        clearInterval(counter); //clear counter
+        clearInterval(counterLine); //clear counterLine
+        startTimer(timeValue); //calling startTimer function
+        startTimerLine(widthValue); //calling startTimerLine function
+        timeText.textContent = "Time Left"; //change the timeText to Time Left
+        next_btn.classList.remove("show"); //hide the next button
+    }else{
+        api_submit_exam(questions_list, answers_list, {{module_id}}, {{exam_id}});
+        clearInterval(counter); //clear counter
+        clearInterval(counterLine); //clear counterLine
+        showResult(); //calling showResult function
+    }
+}
 function showResult(){
     info_box.classList.remove("activeInfo"); //hide info box
     quiz_box.classList.remove("activeQuiz"); //hide quiz box
@@ -706,5 +720,50 @@ function queCounter(index){
 }
 
 
+
+// fetch Application Data
+
+
+
+// # submit_add_student 
+var csrftoken = getCookie('csrftoken');
+function getCookie(name) {
+    var cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        var cookies = document.cookie.split(';');
+        for (var i = 0; i < cookies.length; i++) {
+            var cookie = cookies[i].trim();
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+var csrftoken = getCookie('csrftoken');
+
+
+
+
+function api_submit_exam(questions_list, answers_list, module_id, exam_id) {
+    console.log('questions_list', questions_list)
+    var url = `http://127.0.0.1:8000/etudiant/submit_qcm/${module_id}/${exam_id}`;
+    fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json',
+        'X-CSRFToken': csrftoken,
+      },
+      body: JSON.stringify({
+        'questions': questions_list,
+        'answers': answers_list,
+        'module_id': module_id,
+        'exam_id': exam_id
+      })
+    }).then(function(response) {
+      console.log('response', response)
+    })
+  }
     </script>
 

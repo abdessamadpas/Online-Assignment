@@ -25,15 +25,15 @@ def submit_qcm(request, module_id, exam_id):
         # print("request.body.decode()",request.body.decode())
         questions = request.data.get("questions")
         answers = request.data.get("answers")
-        print("questions", questions)
-        print("answers", answers)
         attempter = Attempter.objects.create(user=user, exam=exam, score=0)
         
         for qst, anw in zip(questions, answers):
             question = Question.objects.get(id=qst)
             answer_object = Answer.objects.get(answer=anw)
             answer = get_object_or_404(Answer, id=answer_object.id)
+            
             Attempt.objects.create(exam=exam, attempter=attempter, question=question, answer=answer)
+            
             if answer.is_correct == True:
                 earned_points += question.points
                 attempter.score += earned_points

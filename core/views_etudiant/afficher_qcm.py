@@ -1,6 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.contrib.auth.decorators import login_required
-
+from core.models.auth.profile import Profile
 from core.models.exam import Exam
 # Create your views here.
 
@@ -12,7 +12,9 @@ def afficher_qcm(request):
         return redirect('access_denied_student')
     exams_extracted = Exam.objects.all()
     print(exams_extracted)
+    profile = Profile.objects.get(user=user)
     context = {
-        'exams': exams_extracted
+        'exams': exams_extracted,
+        'profile': profile
     }
     return render(request, 'etudiant/pages/afficher_qcm.html', context)

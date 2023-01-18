@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
+from core.models.auth.profile import Profile
 # Create your views here.
 
 @login_required(login_url='login')
@@ -8,4 +9,8 @@ def resultat_qcm(request):
     print("dashboard admin  page user is",user)
     if user.is_staff:
         return redirect('access_denied_student')
-    return render(request, 'etudiant/pages/resultat_qcm.html')
+    profile = Profile.objects.get(user=user)
+    context={
+        'profile': profile
+    }
+    return render(request, 'etudiant/pages/resultat_qcm.html', context)

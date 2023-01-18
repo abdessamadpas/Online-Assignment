@@ -528,6 +528,8 @@ let userScore = 0;
 let counter;
 let counterLine;
 let widthValue = 0;
+let score_student ;
+
 
 const restart_quiz = result_box.querySelector(".buttons .restart");
 const quit_quiz = result_box.querySelector(".buttons .quit");
@@ -634,7 +636,7 @@ function optionSelected(answer){
     next_btn.classList.add("show"); //show the next button if user selected any option
 }
 
-next_btn.onclick = ()=>{
+next_btn.onclick = async()=>{
     if(que_count < questions.length - 1){ //if question count is less than total question length
         que_count++; //increment the que_count value
         que_numb++; //increment the que_numb value
@@ -647,31 +649,13 @@ next_btn.onclick = ()=>{
         timeText.textContent = "Time Left"; //change the timeText to Time Left
         next_btn.classList.remove("show"); //hide the next button
     }else{
-        api_submit_exam(questions_list, answers_list, {{module_id}}, {{exam_id}});
+        await api_submit_exam(questions_list, answers_list, {{module_id}}, {{exam_id}});
         clearInterval(counter); //clear counter
         clearInterval(counterLine); //clear counterLine
         showResult(); //calling showResult function
     }
 }
-function showResult(){
-    info_box.classList.remove("activeInfo"); //hide info box
-    quiz_box.classList.remove("activeQuiz"); //hide quiz box
-    result_box.classList.add("activeResult"); //show result box
-    const scoreText = result_box.querySelector(".score_text");
-    if (userScore > 3){ // if user scored more than 3
-        //creating a new span tag and passing the user score number and total question number
-        let scoreTag = '<span>and congrats! , You got <p>'+ userScore +'</p> out of <p>'+ questions.length +'</p></span>';
-        scoreText.innerHTML = scoreTag;  //adding new span tag inside score_Text
-    }
-    else if(userScore > 1){ // if user scored more than 1
-        let scoreTag = '<span>and nice , You got <p>'+ userScore +'</p> out of <p>'+ questions.length +'</p></span>';
-        scoreText.innerHTML = scoreTag;
-    }
-    else{ // if user scored less than 1
-        let scoreTag = '<span>and sorry , You got only <p>'+ userScore +'</p> out of <p>'+ questions.length +'</p></span>';
-        scoreText.innerHTML = scoreTag;
-    }
-}
+
 
 function startTimer(time){
     counter = setInterval(timer, 1000);
@@ -744,12 +728,10 @@ function getCookie(name) {
 var csrftoken = getCookie('csrftoken');
 
 
-
-
-function api_submit_exam(questions_list, answers_list, module_id, exam_id) {
+async function api_submit_exam(questions_list, answers_list, module_id, exam_id) {
     console.log('questions_list', questions_list)
     var url = `http://127.0.0.1:8000/etudiant/submit_qcm/${module_id}/${exam_id}`;
-    fetch(url, {
+    await fetch(url, {
       method: 'POST',
       headers: {
         'Content-type': 'application/json',
@@ -761,9 +743,29 @@ function api_submit_exam(questions_list, answers_list, module_id, exam_id) {
         'module_id': module_id,
         'exam_id': exam_id
       })
-    }).then(function(response) {
-      console.log('response', response)
-    })
+    }).then(response => response.json())
+    .then(data => 
+    console.log('score_fetched ', data.score)
+    //score_student = data.score
+    )
   }
-    </script>
+
+console.log('score outside', score_student)
+  function showResult(){
+    info_box.classList.remove("activeInfo"); //hide info box
+    quiz_box.classList.remove("activeQuiz"); //hide quiz box
+    result_box.classList.add("activeResult"); //show result box
+    const scoreText = result_box.querySelector(".score_text");
+    const    number_questions=  questions_list.length
+    if (number_questions){ // if user scored more than 3
+        //creating a new span tag and passing the user score number and total question number
+        console.log("score is", number_questions)
+        let scoreTag = '<span>and congrats! , You got <p>'+ number_questions +'</p> out of <p>'+ questions.length +'</p></span>';
+        scoreText.innerHTML = scoreTag;  //adding new span tag inside score_Text
+    }
+}
+
+
+
+</script>
 

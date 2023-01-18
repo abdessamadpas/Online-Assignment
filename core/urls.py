@@ -76,7 +76,7 @@ urlpatterns = [
     #? take care of the paths and views functions  
     path('etudiant/',views_etudiant.dashboard_s , name='dashboard_s'),
     path('etudiant/list_exam',views_etudiant.afficher_qcm , name='list_exam'),
-    path('etudiant/passer_qcm/<module_id>/<exam_id>',views_etudiant.passer_qcm , name='passer_qcm'),
+    path('etudiant/passer_qcm/<module_id>/<str:exam_id>',views_etudiant.passer_qcm , name='passer_qcm'),
 
     #? api for submit qcm
     path('etudiant/submit_qcm/<str:module_id>/<str:exam_id>',views_etudiant.submit_qcm , name='submit_qcm'),

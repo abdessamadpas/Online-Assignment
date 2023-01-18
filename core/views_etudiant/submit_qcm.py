@@ -38,14 +38,22 @@ def submit_qcm(request, module_id, exam_id):
                 earned_points += question.points
                 attempter.score += earned_points
                 attempter.save()
-           
+            
 
+        #! get note of this student
+            attempter_student = Attempter.objects.filter(user=user, exam=exam)
+            print("attempter_student", attempter_student)
+            #score_student = attempter_student.score
+        # context = {
+        #     "score": score_student
+        # }
+        #      
     	#return redirect('notes', module_id=module_id, exam_id=exam_id)
         return Response({
             "questions": questions,
-            "earned_points": earned_points,
             "exam_id": exam_id,
-            "created": True})
+            "score": attempter.score,
+            })
     return Response({
             "lay lay": "lay klay",
            })

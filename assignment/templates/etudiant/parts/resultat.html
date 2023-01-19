@@ -305,7 +305,7 @@ $(document).ready(function(){
 					{% for result in results %}
 						<tr>
 							<td>{{result.id}}</td>
-							<td><a href="#">{{user}}</a></td>
+							<td><a href="#">{{exam}}</a></td>
 							<td>{{matiere}}</td>
 							<td>{{result.create_at}}</td>                        
 							<td><span class="status text-success">&bull;</span>{{result.completed}}</td>
@@ -313,6 +313,7 @@ $(document).ready(function(){
 							
 						</tr>
                  	{% endfor %}
+					
                   
                 </tbody>
             </table>

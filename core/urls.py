@@ -4,6 +4,9 @@ from django.shortcuts import redirect
 from core.views.crud_Student.add_listStudent import add_listStudent
 from core.views.crud_Student.put_delete_Student import put_delete_Student
 #from auth.views import UserProfile, Signup, PasswordChange, PasswordChangeDone, EditProfile
+from core.views.auth.customLogin import RoleBasedLoginView
+
+from django.views.generic import TemplateView
 
 from django.contrib.auth import views as authViews 
 
@@ -15,10 +18,11 @@ from django.contrib.auth import views as authViews
 urlpatterns = [
 
 
-    path('', views.dashboard , name='dashboarde'),
-   	path('login/', authViews.LoginView.as_view(template_name='admine/pages/login.html'), name='login'),
+   	path('login/', RoleBasedLoginView.as_view(), name='login'),
    	path('logout/', authViews.LogoutView.as_view(), {'next_page' : 'login'}, name='logout'),
+    path('admin_dasboard/', views.dashboard , name='dashboarde'),
 
+    path('access_denied_student/', TemplateView.as_view(template_name="public/access_denied.html"), name='access_denied_student'),
     path('', views.dashboard , name='dashboard'),
    	#path('login/', authViews.LoginView.as_view(template_name='admine/pages/login.html'), name='login'),
    	#path('logout/', authViews.LogoutView.as_view(), {'next_page' : 'login'}, name='logout'),
@@ -62,15 +66,17 @@ urlpatterns = [
  #   -------------------- paths etudiant -------------------- #
 
 
-     path('etudiant/',views_etudiant.dashboard_s , name='dashboard_s'),
 
     #path('settings/editSettings/', views.editSettings, name='editSettings' ),
 
     #path('logout/', views.logoutUser, name='logout' ),
     #path('register/', views.registerPage, name='register' ),
-
+    
+    #!  etudent paths 
+    #? take care of the paths and views functions  : wa golha l rask nes mabdltihch 
+    path('etudiant/',views_etudiant.dashboard_s , name='dashboard_s'),
     path('etudiant/list_exam',views_etudiant.afficher_qcm , name='list_exam'),
-    path('etudiant/passer_qcm',views_etudiant.passer_qcm , name='passer_qcm'),
+    path('etudiant/passer_qcm/<module_id>/<exam_id>',views_etudiant.passer_qcm , name='passer_qcm'),
     path('etudiant/resultat_qcm',views_etudiant.resultat_qcm , name='resultat_qcm'),
      path('etudiant/profile',views_etudiant.profile , name='profile'),
 ]

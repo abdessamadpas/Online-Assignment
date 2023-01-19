@@ -458,7 +458,63 @@ footer button.show{
     </div>
 
     <!-- Inside this JavaScript file I've inserted Questions and Options only -->
-    <!-- <script src="js/questions.js"></script> -->
+    <!-- <script src="js/questions.js">
+
+
+
+              <div class="accordion-item" id="Q1">
+                <h2 class="accordion-header" id="flush-headingOne">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                    Question 1 : django is ?
+                  </button>
+                </h2>
+                <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+               
+                  <ul class="list-group " >
+                    
+                    <li class="list-group-item d-flex justify-content-between align-items-center   w-50" id="option1">
+                        <input type="text"  value=""  class="form-control  " placeholder="option value">
+                          <input class="form-check-input" type="checkbox" value="1" id="qcmOption1Correct">
+                          <div class="d-flex actions ">
+                             <a class="add-option align-self-end" data-toggle="modal" data-target="#detailsModal"  href="#" id="add1"><i class="bi bi-plus-lg"></i></a>&nbsp;&nbsp;
+                          <a class="delete-option align-self-end"  data-toggle="modal" data-target="#deleteModal" href="" id="delete1"><i class="bi bi-trash "></i></a>
+                        
+                          </div> 
+                      </li>
+                     
+                    </ul>
+              </div>
+               
+              </div>
+
+              const addOptionButtons = document.getElementsByClassName("add-option");
+const deleteOptionButtons = document.getElementsByClassName("delete-option");
+const list = document.getElementsByClassName("list-group")[0];
+console.log("test");
+
+let id =1 ;
+for (let i = 0; i < addOptionButtons.length; i++) {
+    addOptionButtons[i].addEventListener("click", function() {
+      id++;
+        const newOption = document.createElement("li");
+        newOption.innerHTML = '<input type="text" value=""  class="form-control  " placeholder="option value" id="input${id}"> <input class="form-check-input" type="checkbox" value="1" id="checkbox${id}"> <div class="d-flex actions ">&nbsp;&nbsp; <a class="delete-option align-self-end"  data-toggle="modal" data-target="#deleteModal" href="" id="delete${id}"><i class="bi bi-trash "></i></a> </div>';
+        newOption.classList.add("list-group-item", "d-flex", "justify-content-between", "align-items-center", "w-50");
+        newOption.setAttribute('id','option'+id);
+        
+
+        console.log(newOption.getAttribute('id'));
+        list.appendChild(newOption);
+    });
+}
+
+
+$(document).on("click", ".delete-option", function(){
+        $(this).parents("li").remove();
+        
+    });
+
+
+    </script> -->
 
     <!-- Inside this JavaScript file I've coded all Quiz Codes -->
     <!-- <script src="js/script.js"></script> -->

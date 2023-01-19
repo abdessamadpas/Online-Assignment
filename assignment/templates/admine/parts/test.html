@@ -97,46 +97,16 @@ body{
     } 
 }*/
 
-			table {
-				margin: 0 auto;
-				font-size: large;
-				border: 1px solid black;
-			}
+		
 
-			h1 {
-				text-align: center;
-				color: #006600;
-				font-size: xx-large;
-				font-family: "Gill Sans",
-				"Gill Sans MT",
-				" Calibri",
-				"Trebuchet MS",
-				"sans-serif";
-			}
-
-			td {
-				background-color: #e4f5d4;
-				border: 1px solid black;
-			}
-
-			th,
-			td {
-				font-weight: bold;
-				border: 1px solid black;
-				padding: 10px;
-				text-align: center;
-			}
-
-			td {
-				font-weight: lighter;
-			}
-            .details-form {
-                
-                width: 50%;
-                margin: 0 auto;
-                border: 1px solid black;
-                border-radius: 5px;
-                padding: 20px;
+			
+.details-form {
+  
+    width: 40%;
+    margin: 0 auto;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 20px;
 }
 
 .form-group {
@@ -149,9 +119,9 @@ label {
   margin-bottom: 10px;
 }
 
-input, select {
+input {
   width: 100%;
-  padding: 12px 20px;
+  padding: 10px 15px;
   margin: 8px 0;
   box-sizing: border-box;
   border: 1px solid #ccc;
@@ -162,91 +132,27 @@ button {
   width: 100%;
 }
 
-body{
-    background-color:#eee;
-}
 
-label.radio {
-  cursor: pointer;
-}
 
-label.radio input {
-  position: absolute;
-  top: 0; 
-  left: 0;
-  visibility: hidden;
-  pointer-events: none;
-}
 
-label.radio span {
-  padding: 4px 0px;
-  border: 1px solid red;
-  display: inline-block;
-  color: red;
-  width: 100px;
-  text-align: center;
-  border-radius: 3px;
-  margin-top: 7px;
-  text-transform: uppercase;
-}
 
-label.radio input:checked + span {
-  border-color: red;
-  background-color: red;
-  color: #fff;
-}
-
-.ans {
-  margin-left: 36px !important;
-}
-
-.btn:focus {
-  outline: 0 !important;
-  box-shadow: none !important;
-}
-
-.btn:active {
-  outline: 0 !important;
-  box-shadow: none !important;
-}
 		</style>
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
-		<!-- BOOTSTRAP CSS AND PLUGINS-->
-		<link rel="stylesheet"
+	<link rel="stylesheet"
 			href=
 "https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
 			integrity=
 "sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
 			crossorigin="anonymous" />
-		<script src=
-"https://code.jquery.com/jquery-3.2.1.slim.min.js"
-				integrity=
-"sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-				crossorigin="anonymous">
-	</script>
-		<script src=
-"https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-				integrity=
-"sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-				crossorigin="anonymous">
-	</script>
-		<script src=
-"https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-				integrity=
-"sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-				crossorigin="anonymous">
-	</script>
-		<script src=
-"https://code.jquery.com/jquery-3.5.1.js"
-				integrity=
-"sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
-				crossorigin="anonymous">
-	</script>
+	
+
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+		<!-- BOOTSTRAP CSS AND PLUGINS-->
+	
+		
+	
 	</head>
 <body>
    
@@ -279,7 +185,7 @@ label.radio input:checked + span {
   </form>
 -->
 
-  
+  <!-- HTML
   
   <form class="details-form">
   
@@ -307,14 +213,7 @@ label.radio input:checked + span {
       
       
       <br> <br>
-  
-<!-- HTML for the form -->
-
-  <!-- JavaScript to handle the input and select elements -->
- 
-
-
-  <div class="container mt-5">
+   <div class="container mt-5">
     <div class="d-flex justify-content-center row">
         <div class="col-md-10 col-lg-10">
             <div class="border">
@@ -344,6 +243,36 @@ label.radio input:checked + span {
         </div>
     </div>
 </div>
+ for the form -->
+
+ <form class="details-form">
+  
+  <div class="form-group">
+    <label for="question">Question</label>
+    <input type="text" class="form-control" id="question" placeholder="Enter question">
+  </div>
+  <div id="options">
+    <div class="form-group">
+      <label for="option1">Option 1</label>
+      <div class="d-flex">
+          <input type="text" class="form-control update-option col-11" id="option1" placeholder="Enter option">
+          <input type="checkbox" name="correct_aswer"  class="custom-checkbox">
+      </div>
+    
+    </div>
+  </div>
+  <div class="form-group">
+    <button type="button" class="btn btn-primary add-option">+</button>
+  </div>
+  
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+  <!-- JavaScript to handle the input and select elements -->
+ 
+
+
+ 
 
 <!--
 <div class="container mt-sm-5 my-1">
@@ -383,7 +312,7 @@ label.radio input:checked + span {
 </html>
 
 <script>
- const input = document.getElementById('input');
+/* const input = document.getElementById('input');
     const select = document.getElementById('select');
   
     // Add an event listener to the input element to update the select element when the input value changes
@@ -397,7 +326,7 @@ label.radio input:checked + span {
       option.value = input.value;
       option.text = input.value;
       select.add(option);
-    });
+    });*/
 
 // start  function QCM 
 $(document).ready(function() {
@@ -417,9 +346,9 @@ $('.add-option').click(function() {
       optionNumber +
       '">Option ' +
       optionNumber +
-      '</label><input type="text" class="form-control update-option" id="option' +
+      '</label> <div class="d-flex"> <input type="text" class="form-control update-option" id="option' +
       optionNumber +
-      '" placeholder="Enter option"></div>'
+      '" placeholder="Enter option"> <input type="checkbox" name="correct_aswer"  class="col-sm-1"> </div></div>'
   );
   $('.update-option').change(function() { //start
     var optionId = $(this).attr('id');
@@ -429,26 +358,6 @@ $('.add-option').click(function() {
 });
 });
 
-
-
-$(document).ready(function() {
-    $(".view").click(function() {
-      // Get the row element
-      var row = $(this).closest("tr");
-      // Get the values of each cell in the row
-      var cell1 = row.find("td:eq(0)").text();
-      var cell2 = row.find("td:eq(1)").text();
-      var cell3 = row.find("td:eq(2)").text();
-      // Display the values in the modal
-      $("#detailsModal .modal-body").html(`
-        <p>Cell 1: ${cell1}</p>
-        <p>Cell 2: ${cell2}</p>
-        <p>Cell 3: ${cell3}</p>
-      `);
-    }
-    )
-}
-);
 </script>
   
 

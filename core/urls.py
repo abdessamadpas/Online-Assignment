@@ -16,8 +16,6 @@ from django.contrib.auth import views as authViews
     #! rename those paths obligatorily
 
 urlpatterns = [
-
-
    	path('login/', RoleBasedLoginView.as_view(), name='login'),
    	path('logout/', authViews.LogoutView.as_view(), {'next_page' : 'login'}, name='logout'),
     path('admin_dasboard/', views.dashboard , name='dashboarde'),
@@ -82,4 +80,5 @@ urlpatterns = [
     path('etudiant/submit_qcm/<str:module_id>/<str:exam_id>',views_etudiant.submit_qcm , name='submit_qcm'),
     path('etudiant/resultat_qcm',views_etudiant.resultat_qcm , name='resultat_qcm'),
     path('etudiant/profile',views_etudiant.profile , name='profile'),
+
 ]

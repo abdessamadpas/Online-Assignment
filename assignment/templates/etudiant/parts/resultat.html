@@ -289,6 +289,7 @@ $(document).ready(function(){
                     </div>
                 </div>
             </div>
+			{% if results %}
             <table class="table table-striped table-hover">
                 <thead>
                     <tr>
@@ -297,8 +298,7 @@ $(document).ready(function(){
                         <th>MODULE</th>
                         <th>DATE CREATION</th>						
                         <th>STATUS</th>						
-                        <th>NOTE</th>
-                        
+                        <th>NOTE</th>       
                     </tr>
                 </thead>
                 <tbody>
@@ -310,13 +310,16 @@ $(document).ready(function(){
 							<td>{{result.create_at}}</td>                        
 							<td><span class="status text-success">&bull;</span>{{result.completed}}</td>
 							<td>{{result.score}}</td>
-							
 						</tr>
                  	{% endfor %}
-					
-                  
+
                 </tbody>
             </table>
+			{% else %} 
+				<div class="alert alert-danger" role="alert">
+					<h4 class="alert-heading">Aucun resultat</h4>	
+				</div>	
+			{% endif %}
             <div class="clearfix">
                 <div class="hint-text">Showing <b>1</b> out of <b>3</b> entries</div>
                 <ul class="pagination">

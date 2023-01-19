@@ -457,8 +457,7 @@ section .option_list{
             <!-- Here I've inserted Score Result from JavaScript -->
         </div>
         <div class="buttons">
-            <button class="restart">Replay Quiz</button>
-            <button class="quit">Quit Quiz</button>
+            <button href="/home" class="quit">Quit Quiz </button>
         </div>
     </div>
 
@@ -493,7 +492,7 @@ let questions = [
 const start_btn = document.querySelector(".start_btn button");
 const info_box = document.querySelector(".info_box");
 const exit_btn = info_box.querySelector(".buttons .quit");
-const continue_btn = info_box.querySelector(".buttons .restart");
+const continue_btn = info_box.querySelector(".buttons ");
 const quiz_box = document.querySelector(".quiz_box");
 const result_box = document.querySelector(".result_box");
 const option_list = document.querySelector(".option_list");
@@ -531,32 +530,25 @@ let widthValue = 0;
 let score_student ;
 
 
-const restart_quiz = result_box.querySelector(".buttons .restart");
+//const restart_quiz = result_box.querySelector(".buttons .restart");
 const quit_quiz = result_box.querySelector(".buttons .quit");
 
 // if restartQuiz button clicked
-restart_quiz.onclick = ()=>{
-    quiz_box.classList.add("activeQuiz"); //show quiz box
-    result_box.classList.remove("activeResult"); //hide result box
-    timeValue = 15; 
-    que_count = 0;
-    que_numb = 1;
-    userScore = 0;
-    widthValue = 0;
-    showQuetions(que_count); //calling showQestions function
-    queCounter(que_numb); //passing que_numb value to queCounter
-    clearInterval(counter); //clear counter
-    clearInterval(counterLine); //clear counterLine
-    startTimer(timeValue); //calling startTimer function
-    startTimerLine(widthValue); //calling startTimerLine function
-    timeText.textContent = "Time Left"; //change the text of timeText to Time Left
-    next_btn.classList.remove("show"); //hide the next button
-}
+
+
+
 
 // if quitQuiz button clicked
 quit_quiz.onclick = ()=>{
-    window.location.reload(); //reload the current window
+//    window.location.reload(); //reload the current window
+console.log("on click in exit button");
+var url = "{% url 'resultat_qcm' %}";
+
+window.location.href = url;
 }
+
+
+
 
 const next_btn = document.querySelector("footer .next_btn");
 const bottom_ques_counter = document.querySelector("footer .total_que");

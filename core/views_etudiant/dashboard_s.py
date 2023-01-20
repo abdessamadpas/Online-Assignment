@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from core.models import *
+from core.models import matiere
 # Create your views here.
 
 
@@ -13,6 +14,7 @@ def dashboard_s(request):
 
     profile = Profile.objects.get(user=user_id)
     groupe_id = Student.objects.get(user=user_id).group_id.id
+    print("ccccccc",groupe_id)
     modeles_total = Matiere.objects.filter(groupe=groupe_id).count()
     print("matiere totale is",matiere)
     examen_total = Exam.objects.filter(group_id=groupe_id).count()

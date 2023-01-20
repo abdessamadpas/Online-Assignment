@@ -72,7 +72,7 @@ urlpatterns = [
     #path('register/', views.registerPage, name='register' ),
     
     #!  etudent paths 
-    #? take care of the paths and views functions  
+    #? take care of the paths and views functions  : wa golha l rask nes mabdltihch 
     path('etudiant/',views_etudiant.dashboard_s , name='dashboard_s'),
     path('etudiant/list_exam',views_etudiant.afficher_qcm , name='list_exam'),
     path('etudiant/passer_qcm/<module_id>/<str:exam_id>',views_etudiant.passer_qcm , name='passer_qcm'),

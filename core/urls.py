@@ -10,13 +10,11 @@ from django.views.generic import TemplateView
 
 from django.contrib.auth import views as authViews 
 
-
     #! rename those paths obligatorily
     #! rename those paths obligatorily
     #! rename those paths obligatorily
 
 urlpatterns = [
-
 
    	path('login/', RoleBasedLoginView.as_view(), name='login'),
    	path('logout/', authViews.LogoutView.as_view(), {'next_page' : 'login'}, name='logout'),
@@ -63,10 +61,9 @@ urlpatterns = [
 
     path('settings/', views.settings, name='settings' ),
     path('profile/', views.profile_admin, name='profile_admin' ),
+ 
+ 
  #   -------------------- paths etudiant -------------------- #
-
-
-
     #path('settings/editSettings/', views.editSettings, name='editSettings' ),
 
     #path('logout/', views.logoutUser, name='logout' ),
@@ -82,4 +79,5 @@ urlpatterns = [
     path('etudiant/submit_qcm/<str:module_id>/<str:exam_id>',views_etudiant.submit_qcm , name='submit_qcm'),
     path('etudiant/resultat_qcm',views_etudiant.resultat_qcm , name='resultat_qcm'),
     path('etudiant/profile',views_etudiant.profile , name='profile'),
+
 ]

@@ -79,19 +79,24 @@ body {
               <div class="mt-5">
                   <h3 class="heading">{{exam.discription}}<br>Les notion de base</h3>
                   <div class="float-right">
-                    <a href="{% url 'passer_qcm' module_id=exam.matiere_id.id exam_id=exam.id %}" class="btn btn-primary a-btn-slide-text">
-                        <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
-                        <span><strong>Passer L'Examen</strong></span>            
-                    </a>
-                    <a href="#" class="btn btn-primary a-btn-slide-text disabled" data-toggle="modal" data-target="#deleteModal">
-                       <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                        <span><strong>Voir Result</strong></span>            
-                    </a>     
-            
+                    
+                        {% if exam.attempter_set.count == 0 %}
+                            <a href="{% url 'passer_qcm' module_id=exam.matiere_id.id exam_id=exam.id %}" class="btn btn-primary a-btn-slide-text">
+                                <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+                                <span><strong>Passer L'Examen</strong></span>      
+                            </a>
+                           
+                         {% else %}
+                       
+                        <a href="{% url 'resultat_qcm' %}" class="btn btn-primary a-btn-slide-text ">
+                            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                            <span><strong>Voir Result</strong></span>            
+                         </a>
+                        {% endif %}
+                    
+                                    
             </div>
-            <br>
-
-                 
+            <br>              
               </div>
           </div>
       </div>

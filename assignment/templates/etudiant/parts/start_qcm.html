@@ -471,7 +471,6 @@ section .option_list{
     <script>
 // creating an array and passing the number, questions, options, and answers
 let questions = [
-   
     {% for question in questions  %}{
                 numb: {{forloop.counter}} ,
                 id : {{question.id}},
@@ -480,9 +479,9 @@ let questions = [
                 options: [
                     {% for answer in question.answer_set.all %}
                         "{{answer.answer}}",
-                        
                     {% endfor %} 
                     ] 
+                
             },  
     {% endfor %}
 ];
@@ -555,7 +554,7 @@ const bottom_ques_counter = document.querySelector("footer .total_que");
 
 // if Next Que button clicked
 
-
+console.log("on click in next button",questions[0].answer_total);
 // getting questions and options from array
 function showQuetions(index){
     const que_text = document.querySelector(".que_text");
@@ -563,12 +562,9 @@ function showQuetions(index){
     //creating a new span and div tag for question and option and passing the value using array index
     let que_tag = '<span>'+ questions[index].numb + ". " + questions[index].question +'</span>';
     let option_tag = 
-    
-    '<div class="option"><span> '+ questions[index].options[0] +'</span></div>'
-    + '<div class="option"><span>'+ questions[index].options[1] +'</span></div>'
-    + '<div class="option"><span>'+ questions[index].options[2] +'</span></div>+'
-    ;
-    
+        '<div class="option"><span> '+ questions[index].options[0] +'</span></div>' + 
+        '<div class="option"><span> '+ questions[index].options[1] +'</span></div>' + 
+        '<div class="option"><span> '+ questions[index].options[2] +'</span></div>' 
     
     que_text.innerHTML = que_tag; //adding new span tag inside que_tag
     option_list.innerHTML = option_tag; //adding new div tag inside option_tag
@@ -756,8 +752,6 @@ console.log('score outside', score_student)
         scoreText.innerHTML = scoreTag;  //adding new span tag inside score_Text
     }
 }
-
-
 
 </script>
 

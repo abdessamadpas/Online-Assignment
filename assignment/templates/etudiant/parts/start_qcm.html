@@ -478,10 +478,10 @@ let questions = [
                 answer: "{{corr_answer}}",
                 options: [
                     {% for answer in question.answer_set.all %}
-                        "{{answer.answer}}",
+                        "{{answer.answer}}",        
                     {% endfor %} 
-                    ] 
-                
+                    ] ,
+                answer_total : {{question.answer_set.count}}
             },  
     {% endfor %}
 ];
@@ -552,27 +552,36 @@ window.location.href = url;
 const next_btn = document.querySelector("footer .next_btn");
 const bottom_ques_counter = document.querySelector("footer .total_que");
 
-// if Next Que button clicked
+// push to array answer_num 
+let answer_num =[]
 
-console.log("on click in next button",questions[0].answer_total);
+for(i=0; i < questions.length; i++){
+    answer_num.push(questions[i].answer_total)
+}
+
+
+// if Next Que button clicked
+console.log("on click in next button",questions[1].answer_total);
 // getting questions and options from array
 function showQuetions(index){
     const que_text = document.querySelector(".que_text");
+    answer_num.push(questions[que_count].answer_total)
 
     //creating a new span and div tag for question and option and passing the value using array index
     let que_tag = '<span>'+ questions[index].numb + ". " + questions[index].question +'</span>';
-    let option_tag = 
-        '<div class="option"><span> '+ questions[index].options[0] +'</span></div>' + 
-        '<div class="option"><span> '+ questions[index].options[1] +'</span></div>' + 
-        '<div class="option"><span> '+ questions[index].options[2] +'</span></div>' 
+    console.log(answer_num[index])   
+    let option_tag = ""
+    for(i=0; i < answer_num[index]; i++){
     
+        option_tag+='<div class="option">'+ questions[index].options[i] +'<span></span></div>' 
+    }
     que_text.innerHTML = que_tag; //adding new span tag inside que_tag
     option_list.innerHTML = option_tag; //adding new div tag inside option_tag
     
     const option = option_list.querySelectorAll(".option");
 
     // set onclick attribute to all available options
-   for(i=0; i < option.length; i++){
+   for(i=0; i < option.length ; i++){
         option[i].setAttribute("onclick", "optionSelected(this)");
     } 
 }
@@ -587,6 +596,7 @@ function optionSelected(answer){
     clearInterval(counterLine); //clear counterLine
     let userAns = answer.textContent; //getting user selected option
     let userQuestion = questions[que_count].id;
+ 
     // push to new list
     questions_list.push(userQuestion)
     answers_list.push(userAns.trim())

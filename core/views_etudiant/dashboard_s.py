@@ -28,6 +28,5 @@ def dashboard_s(request):
         'profile': profile,
          'modeles_total': modeles_total,
          'examen_total': examen_total,
-
     }
     return render(request, 'etudiant/pages/dash_etudiant.html', context)

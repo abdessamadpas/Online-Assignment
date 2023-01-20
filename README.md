@@ -17,7 +17,7 @@ pip install -r requirements.txt
 
 ## **DEPLOYMENT** 📦
 
-![My Image](templates/public/dashboardScreenShot.png)
+![dashboard shot](https://ibb.co/frDsygd)
 
 
 > You can just create an virtual enviroment with virtualenv env and start it with env/bin/activate.

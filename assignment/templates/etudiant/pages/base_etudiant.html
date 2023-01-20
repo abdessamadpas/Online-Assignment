@@ -69,12 +69,7 @@
              <i class="bi bi-search"></i>
            </a>
          </li><!-- End Search Icon-->
-         {% comment %} <li class="nav-item d-block "> 
-            <div class="btn-group d-flex align-self-end" role="group">
-            <a  href="{% url 'dashboarde' %}" type="button" class="btn btn-primary" id="admin-btn">Admin</a>
-            <a  href="{% url 'dashboard_s' %}" type="button" class="btn btn-primary" id="student-btn">Student</a>
-            </div>
-         </li> {% endcomment %}
+        
          
 
          <li class="nav-item dropdown">
@@ -221,13 +216,13 @@
          <li class="nav-item dropdown pe-3">
  
            <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-             <img src="{% static 'img/student_logo.png' %}" alt="Profile" class="rounded-circle">
-             <span class="d-none d-md-block dropdown-toggle ps-2">EMSI-STUDENT</span>
+             <img src="{{profile.picture.url}}" alt="Profile" class="rounded-circle">
+             <span class="d-none d-md-block dropdown-toggle ps-2">{{profile.first_name}}</span>
            </a><!-- End Profile Iamge Icon -->
  
            <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
              <li class="dropdown-header">
-               <h6>EMSI-STUDENT</h6>
+               <h6>{{profile.first_name}} {{profile.last_name}}</h6>
                <span>engineering student</span>
              </li>
              <li>

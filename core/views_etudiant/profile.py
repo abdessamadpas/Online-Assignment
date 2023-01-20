@@ -13,11 +13,14 @@ def profile(request):
     
     profile = Profile.objects.get(user=request.user)
     student = Student.objects.get(user=request.user)
+    grad_stud = student.grade
+
 
 
     context = {
         'profile': profile,
-        'student': student
+        'student': student,
+        'grade': grad_stud
     }
 
     return render(request, 'etudiant/pages/profile.html', context)

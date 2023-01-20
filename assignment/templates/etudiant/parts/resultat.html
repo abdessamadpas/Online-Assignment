@@ -305,8 +305,8 @@ $(document).ready(function(){
 					{% for result in results %}
 						<tr>
 							<td>{{result.id}}</td>
-							<td><a href="#">{{exam}}</a></td>
-							<td>{{matiere}}</td>
+							<td><a href="#">{{result.exam}}</a></td>
+							<td>{{result.module}}</td>
 							<td>{{result.create_at}}</td>                        
 							<td><span class="status text-success">&bull;</span>{{result.completed}}</td>
 							<td>{{result.score}}</td>

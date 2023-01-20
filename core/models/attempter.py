@@ -14,6 +14,7 @@ class Attempter(models.Model):
 	score = models.PositiveIntegerField()
 	completed = models.CharField(max_length=1000, choices=COMPLATED, default='completed')
 	create_at = models.DateTimeField(default=timezone.now)
+	module = models.ForeignKey(Matiere, on_delete=models.CASCADE, null=True)
 
 	def __str__(self):
 		return self.user.username

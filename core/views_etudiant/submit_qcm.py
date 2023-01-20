@@ -20,12 +20,13 @@ def submit_qcm(request, module_id, exam_id):
         return redirect('access_denied_student')
 
     exam = get_object_or_404(Exam, id=exam_id)
+    module = get_object_or_404(Matiere, id=module_id)
     earned_points = 0
     if request.method == 'POST':
         # print("request.body.decode()",request.body.decode())
         questions = request.data.get("questions")
         answers = request.data.get("answers")
-        attempter = Attempter.objects.create(user=user, exam=exam, score=0)
+        attempter = Attempter.objects.create(user=user, exam=exam, score=0, module=module)
         
         for qst, anw in zip(questions, answers):
             question = Question.objects.get(id=qst)

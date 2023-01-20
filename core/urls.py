@@ -10,12 +10,12 @@ from django.views.generic import TemplateView
 
 from django.contrib.auth import views as authViews 
 
-
     #! rename those paths obligatorily
     #! rename those paths obligatorily
     #! rename those paths obligatorily
 
 urlpatterns = [
+
    	path('login/', RoleBasedLoginView.as_view(), name='login'),
    	path('logout/', authViews.LogoutView.as_view(), {'next_page' : 'login'}, name='logout'),
     path('admin_dasboard/', views.dashboard , name='dashboarde'),
@@ -61,10 +61,9 @@ urlpatterns = [
 
     path('settings/', views.settings, name='settings' ),
     path('profile/', views.profile_admin, name='profile_admin' ),
+ 
+ 
  #   -------------------- paths etudiant -------------------- #
-
-
-
     #path('settings/editSettings/', views.editSettings, name='editSettings' ),
 
     #path('logout/', views.logoutUser, name='logout' ),

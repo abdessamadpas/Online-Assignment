@@ -14,16 +14,12 @@ def resultat_qcm(request):
     print("result number is ",results.count())
     if results.count() == 0:
         return render(request, 'etudiant/pages/resultat_qcm.html')
-    exam_name = Attempter.objects.filter(user=user).first().exam
-    exam_id=exam_name.id
-    exam_selected = Exam.objects.get(id=exam_id)
-    matiere_id = exam_selected.matiere_id.id
-    matiere = Matiere.objects.get(id=matiere_id).name
+    
+    
+    
     context = {
         "results": results,
-        "matiere": matiere,
-        "exam": exam_name,
-        "user": user,
+        
 
     }
 

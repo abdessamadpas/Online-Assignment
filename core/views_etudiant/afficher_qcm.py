@@ -11,7 +11,7 @@ from core.models.exam import Exam
 @login_required(login_url='login')
 def afficher_qcm(request):
     user = request.user
-    print("afficher qcm page     user is",user)
+    print("afficher qcm page user is",user)
     if user.is_staff:
         return redirect('access_denied_student')
     groupe_student = Student.objects.get(user=user).group_id

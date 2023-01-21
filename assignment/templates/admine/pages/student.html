@@ -380,7 +380,9 @@ $(document).ready(function() {
       }).then(function(response) {
           console.log('response', response)
       })
-      location.reload();
+      setTimeout(() => {
+        location.reload();
+    }, 1000);
 
 
   })
@@ -418,7 +420,9 @@ $(document).ready(function() {
       }).then(function(response) {
           console.log('response', response)
       })
-      location.reload();
+      setTimeout(() => {
+        location.reload();
+    }, 1000);
 
 
   })
@@ -459,8 +463,12 @@ $(document).ready(function() {
           console.log('remmmoooovveeedd hahahah')
       })
       
-      $("#model").hide();
-location.reload();
+      setTimeout(() => {
+        location.reload();
+    }, 1000);
+    
+      
+
 
   })
 })

@@ -15,6 +15,7 @@ from django.contrib.auth import views as authViews
     #! rename those paths obligatorily
 
 urlpatterns = [
+    path('', views.dashboard , name='dashboard'),
 
    	path('login/', RoleBasedLoginView.as_view(), name='login'),
    	path('logout/', authViews.LogoutView.as_view(), {'next_page' : 'login'}, name='logout'),
@@ -23,7 +24,6 @@ urlpatterns = [
     path('admin_dasboard/', views.dashboard , name='dashboarde'),
 
     path('access_denied_student/', TemplateView.as_view(template_name="public/access_denied.html"), name='access_denied_student'),
-    path('', views.dashboard , name='dashboard'),
    	#path('login/', authViews.LoginView.as_view(template_name='admine/pages/login.html'), name='login'),
    	#path('logout/', authViews.LogoutView.as_view(), {'next_page' : 'login'}, name='logout'),
 
@@ -33,7 +33,7 @@ urlpatterns = [
     path('students/', views.student, name='student' ),
     
     #? api for add student 
-    path('students/add_list_Student/',add_listStudent.as_view(), name='addStudent' ),
+    path('students/add_list_students/',add_listStudent.as_view(), name='addStudent' ),
     path('students/put_delete_Student/<int:pk>', put_delete_Student.as_view(), name='deleteStudent'),
     #path('students/addStudent/', views.addStudent, name='addStudent' ),
     #   path('students/deleteStudent/', views.deleteStudent, name='deleteStudent' ),  

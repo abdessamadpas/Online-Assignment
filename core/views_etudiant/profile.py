@@ -18,6 +18,7 @@ def profile(request):
 
 
     context = {
+        'user': user.id,
         'profile': profile,
         'student': student,
         'grade': grad_stud

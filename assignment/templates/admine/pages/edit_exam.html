@@ -138,25 +138,23 @@ table.table td .add {
                 <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
                   
                     <button type="button" class="btn btn-info add-new"><i class="fa fa-plus"></i> Add New</button>
-                    <table class="table table-bordered  w-70" id="{{qcm.id}}">
+                    <table class="table table-bordered  w-70" id="{{forloop.counter}}">
                         <tbody>     
                             {% for answer in qcm.answer_set.all %}
                                         <tr>
-                                          
                                             <td colspan="3">{{answer}}</td>
                                             <td colspan="1">
                                                 <a class="add" title="Add" data-toggle="tooltip"><i class="material-icons">&#xE03B;</i></a>
                                                 <a class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
                                                 <a class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
-                                                {% if answer.is_correct %}
-                                                <a class="check" title="correct" data-toggle="tooltip"><input type="checkbox" name="" id="" checked></a>
-                                                {% else %}
-                                                <a class="check" title="correct" data-toggle="tooltip"><input type="checkbox" name="" id="" ></a>
-                                                {% endif %}
-
+                                                    {% if answer.is_correct %}
+                                                        <a class="check" title="correct" data-toggle="tooltip"><input type="checkbox" name="" id="{{forloop.counter}}" checked></a>
+                                                    {% else %}
+                                                        <a class="check" title="correct" data-toggle="tooltip"><input type="checkbox" name="" id="" ></a>
+                                                    {% endif %}
                                             </td>
                                         </tr>   
-                        {% endfor %}   
+                            {% endfor %}   
                 </tbody>
             </table>
               </div>
@@ -175,37 +173,63 @@ table.table td .add {
 </div>
 
 <script>
-
-
-
-
-
+    let get_update_answer      
+    let questions = [
+        {% for qcm in questions %}
+        {
+        question : "{{qcm.question}}",
+        answers : [
+            {% for answer in qcm.answer_set.all %}
+                {
+                    
+                    "answer":" {{answer.answer}}",
+                    "is_correct": "{{answer.is_correct}}",
+                },
+            {% endfor %}
+            ]
+        },
+        {% endfor %}
+    ]
     $(document).ready(function(){
 	$('[data-toggle="tooltip"]').tooltip();
 	var actions = $("table td:last-child").html();
 	// Append table with add row form on add new button click
+   
+
+    // add new answer
+
+
     $(".add-new").click(function(){
 		$(this).attr("disabled", "disabled");
 		//var index = $("table tbody tr:last-child").index();
         //var countt =  $(this).parents(".accordion-collapse").find("tbody tr").length;
-
+  
         var table = $(this).closest('.accordion-collapse').find('table');
         var table_id = table.attr('id');
+      
+        
         var countt =  $(this).parents(".accordion-collapse").find("#" + table_id + " tbody tr").length;
         var row = '<tr>' +
-            '<td colspan="3"><input type="text" class="form-control" name="name" id="name"></td>' +
-            
+            '<td colspan="3"><input type="text" class="form-control" name="name" id="name"></td>' +           
 			'<td colspan="1">' + actions + '</td>' +
         '</tr>';
         $(this).parents(".accordion-collapse").find("tbody").append(row);	
-		$("#"+table_id+" tbody tr").eq(countt ).find(".add, .edit").toggle();
-    
-        $("#"+table_id+" tbody tr").eq(countt ).find("input[type='checkbox']").prop("checked", false);
-        console.log(actions);
+		$("#"+table_id+" tbody tr").eq(countt).find(".add, .edit").toggle();
+        $("#"+table_id+" tbody tr").eq(countt).find("input[type='checkbox']").prop("checked", false);
+        var checked_box = $("#"+table_id+" tbody tr").eq(countt).find("input[type='checkbox']").prop('checked');
+        console.log("button add pressed")
+        console.log("checked box is", checked_box)
+    });		
+    console.log(questions)	    
         $('[data-toggle="tooltip"]').tooltip();
     });
-	// Add row on add button click
+
+	// add new answer 
+
 	$(document).on("click", ".add", function(){
+        var found_table = $(this).closest('.accordion-collapse').find('table');
+        var wewe = found_table.attr('id');
+        console.log("position isssssss", wewe)
 		var empty = false;
 		var input = $(this).parents("tr").find('input[type="text"]');
         input.each(function(){
@@ -220,24 +244,55 @@ table.table td .add {
 		if(!empty){
 			input.each(function(){
 				$(this).parent("td").html($(this).val());
-			});			
+                
+               
 			$(this).parents("tr").find(".add, .edit").toggle();
 			$(".add-new").removeAttr("disabled");
-		}		
-    });
+            // get the value of the checkboxvar
+            var wee = $(this).parents("tr").find('input[type="checkbox"]');
+            var checkbox = $(this).parents("tr").find('input[type="checkbox"]');
+
+            console.log("checkbox zzzzzzzzzzzzzz", checkbox.attr('checked'))
+            if(checkbox.is(':checked')) {
+                console.log("Checkbox is checked")
+            }else{
+                console.log("Checkbox is not checked")
+            }
+
+
+            let get_update_answer = $(this).val()
+            console.log("get_update_answer", get_update_answer)
+            // push to the table 
+            questions[wewe-1].answers.push({    
+                
+                        "answer": get_update_answer,
+                        "is_correct": false,  
+            }) 
+            console.log("questions updated", questions)   
+            })	
+    }})
+    var total_questions = questions.length;
+
 	// Edit row on edit button click
-	$(document).on("click", ".edit", function(){		
+	$(document).on("click", ".edit", function(questions){    
+        		
         $(this).parents("tr").find("td:not(:last-child)").each(function(){
 			$(this).html('<input type="text" class="form-control" value="' + $(this).text() + '">');
+        
 		});		
 		$(this).parents("tr").find(".add, .edit").toggle();
 		$(".add-new").attr("disabled", "disabled");
+          
+        let to_update = document.getElementById("myInput");
+        let value = input.value;
+        
     });
 	// Delete row on delete button click
 	$(document).on("click", ".delete", function(){
+        
         $(this).parents("tr").remove();
 		$(".add-new").removeAttr("disabled");
     });
-});
+
 </script>
 {% endblock %}

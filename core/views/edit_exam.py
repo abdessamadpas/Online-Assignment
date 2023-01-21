@@ -20,5 +20,4 @@ def edit_exam(request):
         'questions': questions,
         'exam': exam
     }
-    return HttpResponse(template.render(context, request))
-   
+    return HttpResponse(template.render(context, request))   

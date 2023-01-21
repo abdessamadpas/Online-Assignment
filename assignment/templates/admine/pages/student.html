@@ -186,15 +186,15 @@
             </div>
             <div class="form-group">
             <label for="name">name</label>
-            <input type="text" class="form-control " id="name_to_update" placeholder="Enter email">
+            <input type="text" class="form-control name" id="name_to_update" placeholder="Enter name">
             </div>
             <div class="form-group">
             <label for="email">email</label>
-            <input type="email" class="form-control product " id="email_to_update" placeholder="Enter product">
+            <input type="email" class="form-control email " id="email_to_update" placeholder="Enter email">
             </div>
             <div class="form-group">
             <label for="price">groupe</label>
-            <input type="text" class="form-control price" id="groupe_to_update" placeholder="Enter price">
+            <input type="text" class="form-control price" id="groupe_to_update" placeholder="Enter groupe">
             </div>
             <div class="form-group">
             <label for="status">Status</label>
@@ -206,7 +206,7 @@
            </div>
     <div class="modal-footer">
       <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-      <button type="submit" id="update_student" class="btn btn-primary" onclick="saveChanges()">Save Changes</button>
+      <button type="submit" href="{% url 'student' %}" id="update_student" class="btn btn-primary" onclick="saveChanges()" data-dismiss="modal">Save Changes</button>
     </div>
         </form>
 <!-- form details -->
@@ -380,6 +380,7 @@ $(document).ready(function() {
       }).then(function(response) {
           console.log('response', response)
       })
+      location.reload();
 
 
   })
@@ -417,6 +418,7 @@ $(document).ready(function() {
       }).then(function(response) {
           console.log('response', response)
       })
+      location.reload();
 
 
   })
@@ -456,8 +458,9 @@ $(document).ready(function() {
           console.log('response', response)
           console.log('remmmoooovveeedd hahahah')
       })
+      
       $("#model").hide();
-
+location.reload();
 
   })
 })

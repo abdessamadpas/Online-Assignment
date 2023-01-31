@@ -311,7 +311,7 @@ $(document).ready(function(){
                         <td>{{exam.group_id.name}}</td>
                         <td>Jun 15, 2023</td>                        
                         <td><span class="status text-success">&bull;</span> NOT PASSED</td>
-                        <td>{{ exam.question_set.count }}</td>
+                        <td>{{ exam.questions_count }}</td>
                         <td><a href="{% url 'details_exam' %}?exam_id={{exam.id}}" class="show_details_exam" title="View Details" data-toggle="tooltip"><i class="material-icons">&#xE5C8;</i></a></td>
                     </tr>
                    

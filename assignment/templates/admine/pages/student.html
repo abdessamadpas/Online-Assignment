@@ -251,15 +251,7 @@
             </select>
             </div>  
             
-            <div class="form-group">
-              <label for="matiere">matiere</label>
-              <select class="form-control status" name="matiere" id="matiere">
-                {% comment %} for block {% endcomment %}
-                {% for option in options_list_matieres %}
-                  <option value="{{ option.id }}">{{ option.name }}</option>
-                {% endfor %}
-            </select>
-            </div>
+         
 
 
             {% comment %} <div class="form-group">
@@ -399,8 +391,13 @@ $(document).ready(function() {
       var name = document.getElementById('student_name').value
       var email = document.getElementById('student_email').value
       var groupe = document.getElementById('groupe').value
+<<<<<<< HEAD
       var matiere = document.getElementById('matiere').value
       console.log(name, email, groupe, matiere);
+=======
+     
+      console.log(name, email, groupe);
+>>>>>>> cd5fc39b2c7e2dfc726b52b9dfbffd2ae9f37748
 
       let url = 'http://127.0.0.1:8000/students/add_list_students/'
 
@@ -415,14 +412,22 @@ $(document).ready(function() {
               'name': name,
               'email': email,
               'group_id': groupe,
+<<<<<<< HEAD
               'matiere': matiere
+=======
+             
+>>>>>>> cd5fc39b2c7e2dfc726b52b9dfbffd2ae9f37748
           })
       }).then(function(response) {
           console.log('response', response)
       })
       setTimeout(() => {
         location.reload();
+<<<<<<< HEAD
     }, 1000);
+=======
+    }, 10000);
+>>>>>>> cd5fc39b2c7e2dfc726b52b9dfbffd2ae9f37748
 
 
   })

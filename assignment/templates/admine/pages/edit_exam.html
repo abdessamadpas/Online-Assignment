@@ -142,15 +142,15 @@ table.table td .add {
                         <tbody>     
                             {% for answer in qcm.answer_set.all %}
                                         <tr>
-                                            <td colspan="3">{{answer}}</td>
+                                            <td colspan="3" id="{{forloop.counter}}" >{{answer}}</td>
                                             <td colspan="1">
                                                 <a class="add" title="Add" data-toggle="tooltip"><i class="material-icons">&#xE03B;</i></a>
                                                 <a class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
                                                 <a class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
                                                     {% if answer.is_correct %}
-                                                        <a class="check" title="correct" data-toggle="tooltip"><input type="checkbox" name="" id="{{forloop.counter}}" checked></a>
+                                                        <a class="check" title="correct" data-toggle="tooltip"><input type="checkbox"  id="{{forloop.counter}}" checked></a>
                                                     {% else %}
-                                                        <a class="check" title="correct" data-toggle="tooltip"><input type="checkbox" name="" id="" ></a>
+                                                        <a class="check" title="correct" data-toggle="tooltip"><input type="checkbox" name="" id="{{forloop.counter}}" ></a>
                                                     {% endif %}
                                             </td>
                                         </tr>   
@@ -163,7 +163,7 @@ table.table td .add {
           </div><!-- End Accordion without outline borders -->
           <div class="text-right">
             <button type="button" class="btn btn-secondary" onclick="history.go(-1);">Cancel and Back</button>
-            <button type="submit" class="btn btn-primary">Save Changes</button>
+            <button type="submit" id="submit_exam" class="btn btn-primary">Save Changes</button>
             
         </div>
     </form>
@@ -180,8 +180,7 @@ table.table td .add {
         question : "{{qcm.question}}",
         answers : [
             {% for answer in qcm.answer_set.all %}
-                {
-                    
+                {    
                     "answer":" {{answer.answer}}",
                     "is_correct": "{{answer.is_correct}}",
                 },
@@ -198,14 +197,15 @@ table.table td .add {
 
     // add new answer
 
-
+        let table;
+        let table_id;
     $(".add-new").click(function(){
 		$(this).attr("disabled", "disabled");
 		//var index = $("table tbody tr:last-child").index();
         //var countt =  $(this).parents(".accordion-collapse").find("tbody tr").length;
   
-        var table = $(this).closest('.accordion-collapse').find('table');
-        var table_id = table.attr('id');
+        table = $(this).closest('.accordion-collapse').find('table');
+        table_id = table.attr('id');
       
         
         var countt =  $(this).parents(".accordion-collapse").find("#" + table_id + " tbody tr").length;
@@ -216,20 +216,26 @@ table.table td .add {
         $(this).parents(".accordion-collapse").find("tbody").append(row);	
 		$("#"+table_id+" tbody tr").eq(countt).find(".add, .edit").toggle();
         $("#"+table_id+" tbody tr").eq(countt).find("input[type='checkbox']").prop("checked", false);
-        var checked_box = $("#"+table_id+" tbody tr").eq(countt).find("input[type='checkbox']").prop('checked');
-        console.log("button add pressed")
-        console.log("checked box is", checked_box)
+        // push to the table 
+        var found_table = $(this).closest('.accordion-collapse').find('table');
+        var wewe = found_table.attr('id');
+        console.log("position isssssss", wewe)
+        questions[wewe-1].answers.push({
+            "answer": "",
+            "is_correct": false,
+        }) 
+        console.log("questions updated", questions)   
     });		
-    console.log(questions)	    
         $('[data-toggle="tooltip"]').tooltip();
     });
 
 	// add new answer 
-
+    let send_to_add_function;
 	$(document).on("click", ".add", function(){
-        var found_table = $(this).closest('.accordion-collapse').find('table');
-        var wewe = found_table.attr('id');
-        console.log("position isssssss", wewe)
+        
+        // search for position of the answer in the table
+        
+
 		var empty = false;
 		var input = $(this).parents("tr").find('input[type="text"]');
         input.each(function(){
@@ -242,7 +248,7 @@ table.table td .add {
 		});
 		$(this).parents("tr").find(".error").first().focus();
 		if(!empty){
-			input.each(function(){
+			input.each(function(table_id, countt){
 				$(this).parent("td").html($(this).val());
                 
                
@@ -251,40 +257,48 @@ table.table td .add {
             // get the value of the checkboxvar
             var wee = $(this).parents("tr").find('input[type="checkbox"]');
             var checkbox = $(this).parents("tr").find('input[type="checkbox"]');
-
-            console.log("checkbox zzzzzzzzzzzzzz", checkbox.attr('checked'))
-            if(checkbox.is(':checked')) {
-                console.log("Checkbox is checked")
-            }else{
-                console.log("Checkbox is not checked")
-            }
-
+            var checked_box = $("#"+table_id+" tbody tr").eq(countt).find("input[type='checkbox']").prop('checked');
+            console.log("button add pressed")
+            console.log("checked box is", checked_box)   
+            
 
             let get_update_answer = $(this).val()
-            console.log("get_update_answer", get_update_answer)
-            // push to the table 
-            questions[wewe-1].answers.push({    
-                
-                        "answer": get_update_answer,
-                        "is_correct": false,  
-            }) 
-            console.log("questions updated", questions)   
+            console.log("get_updateeeee_answer", get_update_answer)
+            // update the new answer to the array
+            console.log("hahahaah",question_position)
+            questions[question_position-1].answers[index_of_answer].answer = get_update_answer
+            console.log("new questionqs", questions)
             })	
+
+            
     }})
     var total_questions = questions.length;
-
+    let question_position
+    let index_of_answer
 	// Edit row on edit button click
-	$(document).on("click", ".edit", function(questions){    
-        		
+	$(document).on("click", ".edit", function(){    
         $(this).parents("tr").find("td:not(:last-child)").each(function(){
-			$(this).html('<input type="text" class="form-control" value="' + $(this).text() + '">');
-        
-		});		
+		$(this).html('<input type="text" class="form-control" value="' + $(this).text() + '">');
+      
+        var found_table = $(this).closest('.accordion-collapse').find('table');
+        question_position = found_table.attr('id');
+        index_of_answer  = $(this).parents("tr").index();
+        let text_answer  = $(this).parents("tr").val();
+        console.log("text_answer", text_answer)
+        console.log("index of the question is",question_position,"index of its answer", index_of_answer)
 		$(this).parents("tr").find(".add, .edit").toggle();
 		$(".add-new").attr("disabled", "disabled");
-          
-        let to_update = document.getElementById("myInput");
-        let value = input.value;
+
+        var input = $(this).parents("tr").find('input[type="text"]').val();
+        console.log("input", $(this).val())
+        console.log("wewe", questions[question_position-1].answers[index_of_answer].answer="ss")
+        // the most important thing is to update the questions array
+       // questions[question_position].answers[index_of_answer].answer ;
+            
+    });		
+		
+       
+        
         
     });
 	// Delete row on delete button click
@@ -293,6 +307,42 @@ table.table td .add {
         $(this).parents("tr").remove();
 		$(".add-new").removeAttr("disabled");
     });
+
+
+
+    
+$(document).ready(function() {
+    $("#submit_exam").click(function(e) {
+        console.log("u entered to fetch exam api ");
+        console.log(csrftoken)
+        var url = `http://127.0.0.1:8000/submitExam//${exam_id}`
+  
+        fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-type': 'application/json',
+                'X-CSRFToken': csrftoken,
+            },
+            body: JSON.stringify({
+                'questions': questions,
+                
+            })
+        }).then(function(response) {
+            console.log('response', response)
+            console.log('remmmoooovveeedd hahahah')
+        })
+        
+        setTimeout(() => {
+          location.reload();
+      }, 1000);
+      
+        
+  
+  
+    })
+  })
+  
+
 
 </script>
 {% endblock %}

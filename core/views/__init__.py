@@ -9,6 +9,8 @@ from core.views.settings import *
 from core.views.EditModels import *
 from core.views.editStudent import *
 from core.views.profile_admin import *
+from core.views.submitExam import *
+
 
 #  -----------------------------views etudiant ----------------------------------- #
 

@@ -7,7 +7,7 @@ from core.views.crud_Student.put_delete_Student import put_delete_Student
 from core.views.auth.customLogin import RoleBasedLoginView
 from core.views.auth.customChangePsw import ChangePasswordView
 from django.views.generic import TemplateView
-
+from core.views import *
 from django.contrib.auth import views as authViews 
 
     #! rename those paths obligatorily
@@ -63,8 +63,13 @@ urlpatterns = [
 
     path('settings/', views.settings, name='settings' ),
     path('profile/', views.profile_admin, name='profile_admin' ),
- 
- 
+
+    #? api for update exam
+    #path('exam/updateexam/', views.updatexam, name='updatexam' ),
+    
+    #todo          edit exam
+    path('submitExam/<str:exam_id>/', views.SubmitExamen, name='submit_Exam'),
+   
  #   -------------------- paths etudiant -------------------- #
     #path('settings/editSettings/', views.editSettings, name='editSettings' ),
 

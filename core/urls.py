@@ -33,7 +33,7 @@ urlpatterns = [
     path('students/', views.student, name='student' ),
     
     #? api for add student 
-    path('students/add_list_Student/',add_listStudent.as_view(), name='addStudent' ),
+    path('students/add_list_students/',add_listStudent.as_view(), name='addStudent' ),
     path('students/put_delete_Student/<int:pk>', put_delete_Student.as_view(), name='deleteStudent'),
     #path('students/addStudent/', views.addStudent, name='addStudent' ),
     #   path('students/deleteStudent/', views.deleteStudent, name='deleteStudent' ),  
@@ -54,7 +54,12 @@ urlpatterns = [
     path('details_exam/', views.details_exam, name='details_exam'),
     path('edit_exam/', views.edit_exam, name='edit_exam'),
     path('gestion_exam/', views.gestion_exam, name='gestion_exam'),
-    
+    path('update_answers/', views.update_answers, name='update_answers'),
+    path('delete_answers/', views.delete_answers, name='delete-answers'),
+    path('delete_question/', views.delete_question, name='delete-question'),
+    path('create_answers/', views.create_answers, name='create-answers'),
+    path('create_question/', views.create_question, name='create-question'),
+
     #? exams sestion 
 
     #path('exams/addExam/', views.addExam, name='addExam' ),

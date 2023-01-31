@@ -9,6 +9,10 @@ from core.views.settings import *
 from core.views.EditModels import *
 from core.views.editStudent import *
 from core.views.profile_admin import *
-
+from core.views.update_exam import *
+from core.views.delete_answers import *
+from core.views.delete_question import *
+from core.views.create_answer import *
+from core.views.create_question import *
 #  -----------------------------views etudiant ----------------------------------- #
 

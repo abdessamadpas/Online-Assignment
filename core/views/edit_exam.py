@@ -18,7 +18,8 @@ def edit_exam(request):
     template = loader.get_template('admine/pages/edit_exam.html')
     context = {
         'questions': questions,
-        'exam': exam
+        'exam': exam,
+        'exam_id': exam_id
     }
     return HttpResponse(template.render(context, request))
    

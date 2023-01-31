@@ -69,16 +69,15 @@
           <td class="row-status"><span class="badge bg-success">Approved</span></td>
           <td>
 
-            <a class="view-or-edite" data-toggle="modal" data-target="#editModal" href=""><i class="bi bi-pen  "></i></a>
+            <a class="view-or-edite" data-toggle="modal" data-target="#editModal" href="" id="{student}"><i class="bi bi-pen  "></i></a>
 
             &nbsp; &nbsp;
 
-           <a class="delete"  data-toggle="modal" data-target="#deleteModal" href=""><i class="bi bi-trash "></i></a>
+           <a class="delete"  data-toggle="modal" data-wewe="{{student.id}}" data-target="#deleteModal" data href=""><i class="bi bi-trash "></i></a>
 
               </i>&nbsp; &nbsp;
 
            <a class="view-or-edite"  data-toggle="modal" data-target="#detailsModal"  href="#"><i class="bi bi-eye " ></i></a>
-        
         </td>
         </tr>
         {% endfor %}
@@ -160,7 +159,7 @@
     </div>
     <div class="modal-footer">
       <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-      <button type="button" id="submit_deleteStudent" class="btn btn-danger" onclick="deleteItem()">Delete</button>
+      <button type="button" id="submit_deleteStudent" class="btn btn-danger" onclick="deleteItem()" data-dismiss="modal">Delete</button>
     </div>
   </div>
 </div>
@@ -177,24 +176,25 @@
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
+   
     <div class="modal-body">
          <!-- form details -->
-         <form class="details-or-view-form">
+         <form class="details-or-view-form" method="PUT">
             <div class="form-group">
-            <label for="name">Name</label>
-            <input type="text" class="form-control name" id="name" placeholder="Enter name">
+            <label for="name">id</label>
+            <input type="text" class="form-control name" id="id_to_update" placeholder="Enter id">
             </div>
             <div class="form-group">
-            <label for="email">Email</label>
-            <input type="email" class="form-control email" id="email" placeholder="Enter email">
+            <label for="name">name</label>
+            <input type="text" class="form-control name" id="name_to_update" placeholder="Enter name">
             </div>
             <div class="form-group">
-            <label for="product">Product</label>
-            <input type="text" class="form-control product " id="product" placeholder="Enter product">
+            <label for="email">email</label>
+            <input type="email" class="form-control email " id="email_to_update" placeholder="Enter email">
             </div>
             <div class="form-group">
-            <label for="price">Price</label>
-            <input type="text" class="form-control price" id="price" placeholder="Enter price">
+            <label for="price">groupe</label>
+            <input type="text" class="form-control price" id="groupe_to_update" placeholder="Enter groupe">
             </div>
             <div class="form-group">
             <label for="status">Status</label>
@@ -203,15 +203,15 @@
                 <option>Inactive</option>
             </select>
             </div>
-           
+           </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+      <button type="submit" href="{% url 'student' %}" id="update_student" class="btn btn-primary" onclick="saveChanges()" data-dismiss="modal">Save Changes</button>
+    </div>
         </form>
 <!-- form details -->
       <!-- Form for editing item goes here -->
-    </div>
-    <div class="modal-footer">
-      <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-      <button type="button" class="btn btn-primary" onclick="saveChanges()">Save Changes</button>
-    </div>
+    
   </div>
 </div>
 </div>
@@ -251,15 +251,7 @@
             </select>
             </div>  
             
-            <div class="form-group">
-              <label for="matiere">matiere</label>
-              <select class="form-control status" name="matiere" id="matiere">
-                {% comment %} for block {% endcomment %}
-                {% for option in options_list_matieres %}
-                  <option value="{{ option.id }}">{{ option.name }}</option>
-                {% endfor %}
-            </select>
-            </div>
+         
 
 
             {% comment %} <div class="form-group">
@@ -329,6 +321,149 @@
 
 
 
+
+function getCookie(name) {
+  var cookieValue = null;
+  if (document.cookie && document.cookie !== '') {
+      var cookies = document.cookie.split(';');
+      for (var i = 0; i < cookies.length; i++) {
+          var cookie = cookies[i].trim();
+          // Does this cookie string begin with the name we want?
+          if (cookie.substring(0, name.length + 1) === (name + '=')) {
+              cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+              break;
+          }
+      }
+  }
+  return cookieValue;
+}
+var csrftoken = getCookie('csrftoken');
+
+
+
+
+
+// update student 
+
+$(document).ready(function() {
+  $("#update_student").click(function(e) {
+      console.log("u entered to update student api");
+      e.preventDefault()
+      var id = document.getElementById('id_to_update').value
+      var name = document.getElementById('name_to_update').value
+      var email = document.getElementById('email_to_update').value
+      var groupe = document.getElementById('groupe_to_update').value
+      console.log(id, name, email, groupe);
+
+      let url = `http://127.0.0.1:8000/students/put_delete_Student/${id}`
+
+      fetch(url, {
+          method: 'PUT',
+          headers: {
+              'Content-type': 'application/json',
+              'X-CSRFToken': csrftoken,
+          },
+
+          body: JSON.stringify({
+              'name': name,
+              'email': email,
+              'group_id': groupe,
+          })
+      }).then(function(response) {
+          console.log('response', response)
+      })
+      setTimeout(() => {
+        location.reload();
+    }, 1000);
+
+
+  })
+})
+
+
+
+//  add new student
+
+$(document).ready(function() {
+  $("#submit_add_student").click(function(e) {
+      console.log("u entered to add student api");
+      e.preventDefault()
+      var name = document.getElementById('student_name').value
+      var email = document.getElementById('student_email').value
+      var groupe = document.getElementById('groupe').value
+     
+      console.log(name, email, groupe);
+
+      let url = 'http://127.0.0.1:8000/students/add_list_students/'
+
+      fetch(url, {
+          method: 'POST',
+          headers: {
+              'Content-type': 'application/json',
+              'X-CSRFToken': csrftoken,
+          },
+
+          body: JSON.stringify({
+              'name': name,
+              'email': email,
+              'group_id': groupe,
+             
+          })
+      }).then(function(response) {
+          console.log('response', response)
+      })
+      setTimeout(() => {
+        location.reload();
+    }, 10000);
+
+
+  })
+})
+
+
+// # delete student
+let id_question_to_remove 
+$(document).ready(function() {
+  $(".delete").click(function() {
+    // Get the row element
+   id_question_to_remove = $(this).attr('data-wewe');
+    console.log(id_question_to_remove);
+})})
+
+$(document).ready(function() {
+  $("#submit_deleteStudent").click(function(e) {
+      console.log("u entered");
+    
+      console.log(id_question_to_remove);
+      console.log(csrftoken)
+      e.preventDefault()
+      
+
+      var url = `http://127.0.0.1:8000/students/put_delete_Student/${id_question_to_remove}`
+
+      fetch(url, {
+          method: 'DELETE',
+          headers: {
+              'Content-type': 'application/json',
+              'X-CSRFToken': csrftoken,
+          },
+          body: JSON.stringify({
+
+          })
+      }).then(function(response) {
+          console.log('response', response)
+          console.log('remmmoooovveeedd hahahah')
+      })
+      
+      setTimeout(() => {
+        location.reload();
+    }, 1000);
+    
+      
+
+
+  })
+})
 
 </script>
 {% endblock content %}

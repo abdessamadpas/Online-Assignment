@@ -369,20 +369,9 @@
 
 <!-- Template Main JS File -->
 <script src="{% static 'js/main.js' %}"></script>
-<script src="{% static 'js/student_add.js' %}"></script>
+
 <script>
-  let adminBtn = document.getElementById("admin-btn");
-let studentBtn = document.getElementById("student-btn");
-
-adminBtn.addEventListener("click", function() {
-adminBtn.classList.add("active");
-studentBtn.classList.remove("active");
-});
-
-studentBtn.addEventListener("click", function() {
-studentBtn.classList.add("active");
-adminBtn.classList.remove("active");
-});
+ 
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.56.0/codemirror.min.js"></script>
 

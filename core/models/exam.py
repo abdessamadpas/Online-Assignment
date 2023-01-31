@@ -1,4 +1,5 @@
-from django.db import models
+from django.db import models 
+from core.models import Question
 from datetime import datetime
 
 
@@ -19,3 +20,10 @@ class Exam(models.Model):
 
     def __str__(self) :
         return self.title
+    #add function property  instead of using prefetch function
+    @property
+    def questions(self):
+        return Question.objects.filter(exam_id=self)
+    @property
+    def questions_count(self):
+        return len(self.questions)

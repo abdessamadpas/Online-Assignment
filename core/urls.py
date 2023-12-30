@@ -3,7 +3,7 @@ from core import views , views_etudiant
 from django.shortcuts import redirect
 from core.views.crud_Student.add_listStudent import add_listStudent
 from core.views.crud_Student.put_delete_Student import put_delete_Student
-#from auth.views import UserProfile, Signup, PasswordChange, PasswordChangeDone, EditProfile
+# from auth.views import UserProfile, Signup, PasswordChange, PasswordChangeDone, EditProfile
 from core.views.auth.customLogin import RoleBasedLoginView
 from core.views.auth.customChangePsw import ChangePasswordView
 from django.views.generic import TemplateView
@@ -20,10 +20,7 @@ urlpatterns = [
    	path('login/', RoleBasedLoginView.as_view(), name='login'),
    	path('logout/', authViews.LogoutView.as_view(), {'next_page' : 'login'}, name='logout'),
     path('change_password/<int:pk>/', ChangePasswordView.as_view(), name='auth_change_password'),
-
     path('admin_dasboard/', views.dashboard , name='dashboarde'),
-
-    path('access_denied_student/', TemplateView.as_view(template_name="public/access_denied.html"), name='access_denied_student'),
    	#path('login/', authViews.LoginView.as_view(template_name='admine/pages/login.html'), name='login'),
    	#path('logout/', authViews.LogoutView.as_view(), {'next_page' : 'login'}, name='logout'),
 
@@ -73,7 +70,7 @@ urlpatterns = [
     #path('exam/updateexam/', views.updatexam, name='updatexam' ),
     
     #todo          edit exam
-    path('submitExam/<str:exam_id>/', views.SubmitExamen, name='submit_Exam'),
+    # path('submitExam/<str:exam_id>/', views.SubmitExamen, name='submit_Exam'),
    
  #   -------------------- paths etudiant -------------------- #
     #path('settings/editSettings/', views.editSettings, name='editSettings' ),
@@ -91,5 +88,6 @@ urlpatterns = [
     path('etudiant/submit_qcm/<str:module_id>/<str:exam_id>',views_etudiant.submit_qcm , name='submit_qcm'),
     path('etudiant/resultat_qcm',views_etudiant.resultat_qcm , name='resultat_qcm'),
     path('etudiant/profile',views_etudiant.profile , name='profile'),
+    path('access_denied_student/', TemplateView.as_view(template_name="public/access_denied.html"), name='access_denied_student'),
 
 ]
